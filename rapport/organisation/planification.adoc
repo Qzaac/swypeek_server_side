@@ -9,11 +9,11 @@
 [cols=",^,^,,",options="header",]
 |====
 |Tâche |Qui |Quand |Fait |Remarques
-|sujet | | | |
-|sujet en anglais | | | |
-|scenario | | | |
-|architecture (schéma et documentation) | | | |
-|découpage en modules | | | |
+|sujet |Jules | | |
+|sujet en anglais |Rita | | |
+|scenario |Aurélien | | |
+|architecture (schéma et documentation) |Laurent | | |
+|découpage en modules |Olivia | | |
 |planning temporel (ce document, personnalisé) | | | |
 |====
 
