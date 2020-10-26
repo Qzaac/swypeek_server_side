@@ -1,9 +1,6 @@
 === Comptes Rendus de réunions
 
-Insérez ici vos comptes rendus de réunions : date, durée, participants,
-sujets abordés.
-
-==== Réunion du dd/mm/yyyy
+==== Réunion du 26/10/2020
 
 * Présents:
 ** AA
