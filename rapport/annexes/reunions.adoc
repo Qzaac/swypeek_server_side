@@ -11,12 +11,8 @@
 ** Jules
 ** Laurent
 * Sujets abordés
-** *xxx* : Nec, iaculis vel, mi. Nullam et augue vitae nunc tristique
-vehicula. Suspendisse eget elit. Duis adipiscing dui non quam.
+** *Répartition des tâches PAN1*
+** *Modules* : On ne sait pas si notre nombre de modules suffit -> on a envoyé un mail à JC Dufourd, il faut encore contacter un expert pour streaming multimedia
 * Actions à entreprendre:
-** Fusce sollicitudin molestie dui. Sed magna orci, accumsan nec,
-viverra non, pharetra id, dui. Lorem ipsum dolor sit amet, consectetuer
-adipiscing elit.
-** Interdum arcu, at pellentesque diam metus ut nulla. Vestibulum eu
-dolor sit amet lacus varius fermentum. Morbi dolor enim, pulvinar eget.
-
+** Réunion prévue 28/10/2020 pour s'occuper du diagramme d'architecture
+** Réunion prévue 30/10/2020 pour s'occuper de la présentation
