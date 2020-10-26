@@ -8,6 +8,8 @@
 ** Abdelali
 ** Zachary
 ** Aurélien
+** Jules
+** Laurent
 * Sujets abordés
 ** *xxx* : Nec, iaculis vel, mi. Nullam et augue vitae nunc tristique
 vehicula. Suspendisse eget elit. Duis adipiscing dui non quam.
