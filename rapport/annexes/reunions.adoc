@@ -3,9 +3,11 @@
 ==== Réunion du 26/10/2020
 
 * Présents:
-** AA
-** BB
-** CC
+** Mehdi
+** Rita
+** Abdelali
+** Zachary
+** Aurélien
 * Sujets abordés
 ** *xxx* : Nec, iaculis vel, mi. Nullam et augue vitae nunc tristique
 vehicula. Suspendisse eget elit. Duis adipiscing dui non quam.
