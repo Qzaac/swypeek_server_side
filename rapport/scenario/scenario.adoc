@@ -1,26 +1,16 @@
-=== Scénarios d’usage
-Mettre ici le scénario d’usage que vous avez construit lors des séances
-encadrées par les experts SES. Vous pouvez mettre un scénario amélioré
-(et non celui noté) si vous jugez votre scénario insuffisant pour faire
-comprendre au jury PACT les différentes étapes d’utilisation de votre
-produit/service ou si vous avez changé d’idées entre temps.
+== Scénario d’usage
+[.text-justify]
+Après 3 heures de cours de proba, Émile et ses amis se réunissent chez l’un d’entre eux pour regarder un film. Comme d’habitude, le groupe s’éternise pour le choisir.  Soudain, Émile se souvient d’une application dont il a entendu parler permettant de faciliter leur choix : _Swypeek_. Il décide alors de la télécharger.
 
-==== XX
+[.text-justify]
+En ouvrant l’application pour la première fois, un écran d’identification s’affiche, lui permettant de créer son compte. Il lui faudra aussi rentrer son âge afin que l’application ne lui propose que des films adaptés.
+À la suite de son identification un écran d’accueil se présente avec la possibilité de choisir entre les deux fonctions de l’application : *“Trouver un film à regarder avec son groupe”* et *“Trouver un groupe avec lequel regarder un film”*. Comme il s’agit de sa toute première connexion, l’application lui propose quelques films à swiper à droite ou à gauche en fonction de ses préférences afin de créer une ébauche de profil utilisateur qui s’affinera avec le temps et les utilisations successives. Émile explore d’abord la première fonction.
 
-Nulla. Curabitur aliquet leo ac massa. Praesent posuere lectus vitae
-odio. Donec imperdiet urna vel ante. In semper accumsan diam. Vestibulum
-porta justo. Suspendisse egestas commodo eros.
+[.text-justify]
+Pour chercher un film avec son groupe, Émile se retrouve face à plusieurs possibilités : créer le groupe puis le partager à l’aide d’un identifiant de groupe sous forme de QR code ou de lien, ou bien ajouter ses amis dans le groupe dont il est l’administrateur à partir de leurs identifiants. Des amis peuvent parfois être recommandés par l’application. Une fois le groupe créé, Emile lance la recherche et le même film apparaît alors sur tous les écrans. Chaque utilisateur choisit alors de garder le film (swipe à droite) ou de le refuser (swipe à gauche). L’application propose un nouveau film lorsque tous les utilisateurs donnent leur avis sur le précédent et qu’au moins l’un d’entre eux l’a refusé. Ce nouveau film est choisi par un algorithme de recommandation prenant en compte les réponses précédentes dans le but de converger vers un accord commun. Après unanimité, l’application affiche un message d’accord et propose une liste de plateformes diffusant ledit film. C’est fait, Émile et ses amis peuvent apprécier leur popcorn en regardant leur film.
 
-Suspendisse tincidunt mi vel metus. Vivamus non urna in nisi gravida
-congue. Aenean semper orci a eros. Praesent dictum. Maecenas pharetra
-odio ut dui. Pellentesque.
+[.text-justify]
+Plus tard, Émile a une soudaine envie de regarder un film mais tous ses amis sont partis à Sophia sans lui... Il se reconnecte pour chercher un groupe avec qui regarder un film et le même système de swipe apparaît. Les films proposés lui permettent de rejoindre des groupes intéressés pour les regarder ou alors de créer son propre groupe. Grâce au chat intégré, Émile et les autres personnes du groupe peuvent communiquer pour échanger des avis relatifs aux films.
 
-==== YY
-
-Ac mauris.
-
-Duis velit magna, scelerisque vitae, varius ut, aliquam vel, justo.
-Proin ac augue. Nullam auctor lectus vitae arcu. Vestibulum porta justo
-placerat purus. Ut sem nunc, vestibulum nec, sodales vitae, vehicula
-eget, ipsum. Sed nec tortor. Aenean malesuada. Nunc convallis, massa eu
-vestibulum commodo, quam mauris interdum arcu, at pellentesque.
+[.text-justify]
+Notre cher Émile est maintenant un cinéphile aguerri et il décide de s’engager dans la SCEP (Séance Ciné Entre Potes). Sa première mission ? *Réaliser un sondage pour savoir quels films les télécommiens aimeraient regarder.* Une fois de plus, _Swypeek_ lui viendra en aide. Désormais habitué, il crée un groupe qu'il partage à la communauté télécommienne grâce à un lien ou un QR code. Après qu'un nombre suffisant d'utilisateurs a rejoint le groupe, l'application fusionne leurs profils et propose une liste d'une quinzaine de films susceptibles de plaire à tout le monde. Enfin, chaque participant classe ces films et l'application fournit un classement final. Mission réussie !
