@@ -16,3 +16,14 @@
 * Actions à entreprendre:
 ** Réunion prévue 28/10/2020 pour s'occuper du diagramme d'architecture
 ** Réunion prévue 30/10/2020 pour s'occuper de la présentation
+
+==== Réunion du 28/10/2020
+* Présents:
+** Mehdi
+** Rita
+** Zachary
+** Jules
+** Laurent
+** Olivia
+* Sujets abordés
+** *Répartition des modules*
