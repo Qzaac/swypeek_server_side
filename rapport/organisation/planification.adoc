@@ -9,12 +9,12 @@
 [cols=",^,^,^,",options="header",]
 |====
 |Tâche |Qui |Quand |Fait |Remarques
-|sujet |Jules | | |
-|sujet en anglais |Rita | | |
-|scenario |Aurélien | | |
+|sujet |Jules | | X |
+|sujet en anglais |Rita | | X |
+|scenario |Aurélien | | X |
 |architecture (schéma et documentation) |Laurent | | X |
-|découpage en modules |Olivia | | |
-|planning temporel (ce document, personnalisé) | | | |
+|découpage en modules |Olivia | | X |
+|planning temporel (ce document, personnalisé) | | X | |
 |====
 
 * présentation 15mn
