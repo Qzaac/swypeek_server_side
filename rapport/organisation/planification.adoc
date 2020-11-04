@@ -6,13 +6,13 @@
 
 * rapport:
 
-[cols=",^,^,,",options="header",]
+[cols=",^,^,^,",options="header",]
 |====
 |Tâche |Qui |Quand |Fait |Remarques
 |sujet |Jules | | |
 |sujet en anglais |Rita | | |
 |scenario |Aurélien | | |
-|architecture (schéma et documentation) |Laurent | | |
+|architecture (schéma et documentation) |Laurent | | X |
 |découpage en modules |Olivia | | |
 |planning temporel (ce document, personnalisé) | | | |
 |====
