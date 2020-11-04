@@ -5,7 +5,7 @@
 [cols=",^,^,^,^,^,^,^,",options="header",]
 |====
 | Nom        | Streaming multimédia | Communication client serveur | Interface graphique / programmation androïd | Bases de données (crawling + profil utilisateur)  | Intelligence artificielle / recommandations | Réseau social  | Module SES | Test & Intégration    
-| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  | Olivier Fercocq  |    | Dana Diminescu          |  Jean-Claude Dufourd   
+| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  | Olivier Fercoq  | (Jean-Claude Dufourd)   | Dana Diminescu          |  Jean-Claude Dufourd   
 
 | Rita Abubaker     |        |         |         |         |  X      |  X         |         |        
 
