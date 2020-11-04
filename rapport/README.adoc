@@ -35,8 +35,6 @@ ifdef::env-gitlab,env-browser[:outfilesuffix: .adoc]
 
 == Résumé du sujet choisi en français (PAN1)
 
-*_Note: 15 lignes max_*
-
 [.text-justify]
 _Swypeek_ est une application pratique qui permet à un groupe de personnes de *choisir un film à regarder*. La sélection se fait à travers une interface pratique et intuitive, garantissant que le film choisi plaise à tout le monde.
 
@@ -53,8 +51,6 @@ _Swypeek_ rend service aux individus en les aidant à décider et en donnant à 
 
 
 == English Summary (PAN1)
-
-*_Note : 15 lignes max, version anglaise du texte précédent_*
 
 [.text-justify]
 _Swypeek_ is a convenient application which allows a group of people to *decide on a movie to watch*. The selection is done through a practical and intuitive interface, making sure the movie chosen pleases everyone.
