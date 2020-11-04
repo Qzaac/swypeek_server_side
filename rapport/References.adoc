@@ -3,19 +3,18 @@ donne titre, auteur(s), date, journal, revue, source de publication,
 titre de conférence, numéro, pages. Une webographie est aussi
 envisageable : titre, auteur, date, page web_*
 
-* [[TwoSeven]] : https://twoseven.xyz/ _04/11/2020_
-* [[Kastapp]] : https://www.kastapp.co/ _04/11/2020_
-* [[NetflixParty]] : https://www.netflixparty.com/ _04/11/2020_
-* [[SyncPlay]] : https://syncplay.pl/syncplay-1-6-5/ _04/11/2020_
-* [[DNM]] : https://datenightmovies.com/ _04/11/2020_
-* [[Fixee]] : https://www.paris-normandie.fr/loisirs/flixee-l-application-normande-pour-choisir-son-film-en-fonction-de-ses-gouts-AO15286017 _04/11/2020_
-* [[Itcher]] : http://itcher.com/ _04/11/2020_
-* [[IMDB]] : https://www.imdb.com/ _04/11/2020_
-* [[FilmCrave]] : https://www.filmcrave.com/ _04/11/2020_
-* [[Letterboxd]] : https://letterboxd.com/ _04/11/2020_
+* [[TwoSeven]]TwoSeven : https://twoseven.xyz/ _04/11/2020_
+* [[Kastapp]]Kastapp : https://www.kastapp.co/ _04/11/2020_
+* [[NetflixParty]]NetflixParty : https://www.netflixparty.com/ _04/11/2020_
+* [[SyncPlay]]SyncPlay : https://syncplay.pl/syncplay-1-6-5/ _04/11/2020_
+* [[DNM]]DNM : https://datenightmovies.com/ _04/11/2020_
+* [[Fixee]]Fixee : https://www.paris-normandie.fr/loisirs/flixee-l-application-normande-pour-choisir-son-film-en-fonction-de-ses-gouts-AO15286017 _04/11/2020_
+* [[Itcher]]Itcher : http://itcher.com/ _04/11/2020_
+* [[IMDB]]IMDB : https://www.imdb.com/ _04/11/2020_
+* [[FilmCrave]]FilmCrave : https://www.filmcrave.com/ _04/11/2020_
+* [[Letterboxd]]Letterboxd : https://letterboxd.com/ _04/11/2020_
 * 
 
-/*
 * [[RefShannon]]RefShannon : *C. E. SHANNON*, _A Mathematical Theory
 of Communication_, Reprinted with corrections from The Bell System
 Technical Journal, pages 379–423, 623–656, Vol. 27, 1948,
