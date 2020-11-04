@@ -1,23 +1,32 @@
 === Description de la proposition
-*_Note: 2 page max._*
 
-_Décrire de façon détaillée votre projet : motivations de base/problèmes
-constatés avant élaboration du projet, comment votre projet répond à ces
-besoins. Ajouter une image ou une figure pour montrer à quoi cela
-ressemble si besoin._
+====*Problématique*
 
-Amet, tellus. Maecenas a dolor. Praesent tempor, felis eget gravida
-blandit, urna lacus faucibus velit, in consectetuer sapien erat nec
-quam. Integer bibendum odio sit amet neque. Integer imperdiet rhoncus
-mi. Pellentesque malesuada purus id purus. Quisque viverra porta lectus.
-Sed lacus leo, feugiat at, consectetuer eu, luctus quis, risus.
-Suspendisse faucibus orci et nunc. Nullam vehicula fermentum risus.
-Fusce felis nibh, dignissim vulputate, ultrices quis, lobortis et, arcu.
-Duis aliquam libero non diam.
+[.text-justify]
+Le choix de film lors d’une projection en groupe est une tâche pouvant s’avérer fastidieuse et longue si tous les participants n’arrivent pas à se mettre d’accord. 
 
-Vestibulum placerat tincidunt tortor. Ut vehicula ligula quis lectus. In
-eget velit. Quisque vel risus. Mauris pede. Nullam ornare sapien sit
-amet nisl. Cras tortor. Donec tortor lorem.
+_sondage_
+Nombre de personnes concernées par l’idée lors de la séance PACT du 25-09-20 : 20/34 (~60%)
+
+====*Solution proposée*
+
+[.text-justify]
+Notre groupe propose comme solution une application permettant de faciliter le choix d’un film, sur le modèle de Tinder. Les utilisateurs pourraient grâce à celle-ci créer un groupe ou bien en rejoindre un afin de sélectionner un film à visionner. Dans notre projet, selon la taille du groupe (plus de 8 individus ou moins), le système de vote varie, tout en maintenant dans les deux cas le _swipe_. Cette application utilise des bases de données utilisateur afin d’aider à la sélection du film.
+
+[.text-justify]
+Pour un petit groupe, un même film est présenté à tous les utilisateurs ainsi que ses caractéristiques. Les utilisateurs ont alors la possibilité de swiper à droite ou à gauche pour approuver ou non le film proposé. Les suivants sont alors choisis par l’application en fonction des votes précédents jusqu’à arriver à l’unanimité.
+
+[.text-justify]
+Dans le cadre d’un plus grand groupe, l’application se charge dans un premier lieu de sélectionner 10 films communs aux goûts des membres du groupe grâce à leurs profils utilisateurs affinés lors de chaque utilisation de l’application. Ceux-ci doivent ensuite établir un ordre de préférence entre deux films proposés. Par un algorithme de tri, l’application propose alors le film le plus apprécié par les membres du groupe.
+
+[.text-justify]
+Les utilisateurs de l’application ont enfin la possibilité, dans le cas d’une projection à distance (propice dans certains cadres tels que celui de la crise sanitaire), de synchroniser leurs appareils afin de visionner le film en même temps.
+
+[.text-justify]
+Par ailleurs, l’application offre également la possibilité d’accéder à un réseau social et à des groupes d’individus partageant les mêmes affinités cinématographiques. 
+
+[.text-justify]
+Ainsi cette application permettrait de faciliter la prise de décision et d’en optimiser le résultat en se rapprochant le plus possible des goûts de chacun tout en offrant la possibilité de découvrir de nouveaux films.
 
 
 
