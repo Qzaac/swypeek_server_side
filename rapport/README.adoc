@@ -46,10 +46,10 @@ permettrait de faire de façon générale.
 *_Note : 15 lignes max, version anglaise du texte précédent_*
 
 [.text-justify]
-_Swypeek_ is a convenient application which allows a group of people to decide on a movie to watch. The selection is done through a practical and intuitive interface, making sure the movie chosen pleases everyone.
+_Swypeek_ is a convenient application which allows a group of people to *decide on a movie to watch*. The selection is done through a practical and intuitive interface, making sure the movie chosen pleases everyone.
 
 [.text-justify]
-The picking process is based on the simple "swipe" mechanism. In the case of a small group, a movie is simultaneously presented to all of the party participants, along with a small description and a trailer. Each person will then either swipe right if they feel enthusiastic about watching the movie, or left otherwise. As soon as everyone will have finished swiping the movie, another one will be suggested. The movie will be determined by unanimity. The movies displayed are selected by the application according to the user profiles, their preferences, and their tendencies. 
+The picking process is based on the simple *swipe mechanism*. In the case of a small group, a movie is simultaneously presented to all of the party participants, along with a small description and a trailer. Each person will then either swipe right if they feel enthusiastic about watching the movie, or left otherwise. As soon as everyone will have finished swiping the movie, another one will be suggested. The movie will be determined by unanimity. The movies displayed are selected by the application according to the user profiles, their preferences, and their tendencies. 
 On the other hand, if their is a lot of users, the application will select a certain number of movies using their profiles. The users will be presented with two movies at a time and will have to swipe towards their favorite. The application then creates a sorted list of preference for each user and finally the movie is selected based on an accurate electoral system.
 
 [.text-justify]
