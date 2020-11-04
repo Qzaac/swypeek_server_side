@@ -37,9 +37,20 @@ ifdef::env-gitlab,env-browser[:outfilesuffix: .adoc]
 
 *_Note: 15 lignes max_*
 
-Décrire votre projet sans le scénariser : De quoi s’agit-il ? En quoi
-cette idée est compatible avec le thème de PACT ? Qu’est ce qu’il
-permettrait de faire de façon générale.
+[.text-justify]
+_Swypeek_ est une application pratique qui permet à un groupe de personnes de *choisir un film à regarder*. La sélection se fait à travers une interface pratique et intuitive, garantissant que le film choisi plaise à tout le monde.
+
+[.text-justify]
+Le processus de sélection est basé sur le *mécanisme simple de swipe*. Dans le cas d’un petit groupe, un film est présenté simultanément à tous les participants de la partie, avec une petite description et une bande-annonce. Ensuite, chaque personne swipe vers la droite si elle a envie de regarder le film, ou vers la gauche dans le cas contraire. Dès que tout le monde a swipé un film, un autre est suggéré. Le film sera déterminé à l'unanimité.
+Les films affichés sont choisis par l'application en fonction des profils utilisateurs, de leurs préférences et de leurs tendances.
+Dans le cas où le nombre de participants est plus important, l’application propose une sélection intelligente de films basée sur les profils des utilisateurs. Ceux-ci se verront présenter deux films à la fois et devront swiper vers leur favori. L’application crée ensuite une liste triée de préférences pour chaque utilisateur puis le film est sélectionné grâce à un système électoral précis.
+
+[.text-justify]
+Le groupe de personnes peut être soit précomposé, soit formé directement en ligne sur l'application en regroupant des individus appartenant à la même institution (une école par exemple). Pour permettre ces rencontres, l'application propose une fonction réseau social multicommunautaire centrée sur la culture cinématographique. _Swypeek_ possède deux modes: présentiel et distanciel. Dans ce dernier, les utilisateurs auront la possibilité d’associer leur profil à leur(s) plateforme(s) de streaming afin de synchroniser leur lecteur de film avec les autres membres du groupe.
+
+[.text-justify]
+_Swypeek_ rend service aux individus en les aidant à décider et en donnant à chaque membre du groupe une chance de participer au choix. De plus, en ces temps difficiles, il peut être agréable d'avoir des soirées cinéma à distance avec des amis et même de rencontrer de nouvelles personnes qui partagent la même passion grâce à l'application.
+
 
 == English Summary (PAN1)
 
