@@ -17,24 +17,24 @@ notions abordées en séances de Génie Logiciel, programmées avant le PAN1
 et entre PAN1 et PAN2 respectivement.
 * Un module SES
 
-[cols=",^,^,^,^,^,^,^",options="header",]
+[cols=",^,^,^,^,^,^,",options="header",]
 |====
-| Nom        | Streaming multimédia | Communication client serveur | Interface graphique / programmation androïd | Bases de données (crawling + profil utilisateur) | ModuleN | ModuleN | Module SES | Test & Intégration
-| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  |         |          |  Dana Diminescu          |
+| Nom        | Streaming multimédia | Communication client serveur | Interface graphique / programmation androïd | Bases de données (crawling + profil utilisateur) | ModuleN | Module SES | Test & Intégration
+| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  |         |  Dana Diminescu          |  
 
-| Rita Abubaker     |        |         |         |         |         |            |          |
+| Rita Abubaker     |        |         |         |         |         |            |    
 
-| Zachary Abessera     |         | X       |         |         |         |            |         | X
+| Zachary Abessera     |         | X       |         |         |         |            | X     
 
-| Jules Dany    | X        |        |         |         |         | X          |         | 
+| Jules Dany    | X        |        |         |         |         | X          |      
 
-| Laurent Chhy     |        |         |         | X       |         |            |         |
+| Laurent Chhy     |        |         |         | X       |         |            |     
 
-| Abdelali Boukhari     | X      |         |         | X       |         |            |         |
+| Abdelali Boukhari     | X      |         |         | X       |         |            |     
 
-| Olivia Hennequin    |         |         | X        |         |         |            |         |
+| Olivia Hennequin    |         |         | X        |         |         |            |     
 
-| Mehdi Bentaleb     |         |        |  X       |         |         |           |         |  
+| Mehdi Bentaleb     |         |        |  X       |         |         |           |      
 
-| Aurélien Castre     |         | X       |         |         |         |            |         | X
+| Aurélien Castre     |         | X       |         |         |         |            | X     
 |====
