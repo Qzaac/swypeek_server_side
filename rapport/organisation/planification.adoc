@@ -14,7 +14,7 @@
 |scenario |Aurélien | | X |
 |architecture (schéma et documentation) |Laurent | | X |
 |découpage en modules |Olivia | | X |
-|planning temporel (ce document, personnalisé) | | X | |
+|planning temporel (ce document, personnalisé) | | | X |
 |====
 
 * présentation 15mn
