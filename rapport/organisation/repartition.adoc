@@ -1,40 +1,25 @@
 === Répartition des élèves par module
 
-Note : Les modules sont négociables, avec l’accord explicite de l’expert
-(soit un email, soit une fiche signée). Aucun module sans expert ne sera
-accepté. Les descriptions de modules, ou fiches modules, rédigées en
-collaboration avec les experts rencontrés, seront ajoutées dans les
-annexes. Un module sans expert ne sera pas accepté. Toute modification
-au module doit être faite *avec l’accord préalable de l’expert*, et
-l’expert doit envoyer confirmation des changements au jury de votre
-groupe.
 
-Parmi les modules, il faut obligatoirement :
-
-* Un module « intégration et tests », dont l’expert responsable est
-votre encadrant informatique. Ce module intègre le travail sur des
-notions abordées en séances de Génie Logiciel, programmées avant le PAN1
-et entre PAN1 et PAN2 respectivement.
-* Un module SES
 
 [cols=",^,^,^,^,^,^,^,",options="header",]
 |====
 | Nom        | Streaming multimédia | Communication client serveur | Interface graphique / programmation androïd | Bases de données (crawling + profil utilisateur)  | Intelligence artificielle / recommandations | Réseau social  | Module SES | Test & Intégration    
-| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  | Olivier Fercocq  |    | Dana Diminescu          |     
+| Nom Expert |  Jean LeFeuvre  |  Antoine Amarilli  | Jean-Claude Dufourd  | Fabian Suchanek  | Olivier Fercocq  |    | Dana Diminescu          |  Jean-Claude Dufourd   
 
-| Rita Abubaker     |        |         |         |         |  X      |  X         |         | 
+| Rita Abubaker     |        |         |         |         |  X      |  X         |         |        
 
-| Zachary Abessera     |         | X       |         |         |         |          |     | X       
+| Zachary Abessera    |         | X       |         |         |         |          |        | X         
 
-| Jules Dany    | X        |        |         |         |         |    | X        |      X   
+| Jules Dany    | X        |        |         |         |         |          | X        |      X         
 
-| Laurent Chhy     |        |         |         | X       |  X      |          |     |       
+| Laurent Chhy     |        |         |         | X       |  X      |            |          |          
 
-| Abdelali Boukhari     | X      |         |         | X       |         |         |      |        
+| Abdelali Boukhari     | X      |         |         | X       |         |         |       |          
 
-| Olivia Hennequin    |         |         | X        |         |         | X          |      |  
+| Olivia Hennequin    |         |         | X        |         |         | X          |          |     
 
-| Mehdi Bentaleb     |         |        |  X       |         |         |           |   X     | 
+| Mehdi Bentaleb     |         |        |  X       |         |         |           |   X     |       
 
-| Aurélien Castre     |         | X       |         |         | X       |            |        | 
+| Aurélien Castre     |         | X       |         |         | X       |            |        |       
 |====
