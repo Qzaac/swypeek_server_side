@@ -1,6 +1,6 @@
 === Description de la proposition
 
-====*Problématique*
+====Problématique
 
 [.text-justify]
 Le choix de film lors d’une projection en groupe est une tâche pouvant s’avérer fastidieuse et longue si tous les participants n’arrivent pas à se mettre d’accord. 
@@ -8,7 +8,7 @@ Le choix de film lors d’une projection en groupe est une tâche pouvant s’av
 _sondage_
 Nombre de personnes concernées par l’idée lors de la séance PACT du 25-09-20 : 20/34 (~60%)
 
-====*Solution proposée*
+====Solution proposée
 
 [.text-justify]
 Notre groupe propose comme solution une application permettant de faciliter le choix d’un film, sur le modèle de Tinder. Les utilisateurs pourraient grâce à celle-ci créer un groupe ou bien en rejoindre un afin de sélectionner un film à visionner. Dans notre projet, selon la taille du groupe (plus de 8 individus ou moins), le système de vote varie, tout en maintenant dans les deux cas le _swipe_. Cette application utilise des bases de données utilisateur afin d’aider à la sélection du film.
