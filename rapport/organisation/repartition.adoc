@@ -26,13 +26,15 @@ et entre PAN1 et PAN2 respectivement.
 
 | Zachary Abessera     |         | X       |         |         |         |            | X
 
-| Eleve3     |         |         |         |         |         |            |
+| Jules Dany     |         |         |         |         |         |            |
 
-| Eleve4     | X       |         |         |         |         |            |
+| Laurent Chhy     | X       |         |         |         |         |            |
 
-| Eleve5     |         |         |         |         |         |            |
+| Abdelali Boukhari     |         |         |         |         |         |            |
 
-| Eleve6     |         |         |         |         |         |            |
+| Olivia Hennequin    |         |         |         |         |         |            |
 
-| Eleve7     |         | X       |         |         |         |            | X
+| Mehdi Bentaleb     |         | X       |         |         |         |            | X
+
+| Aurélien Castre     |         | X       |         |         |         |            | X
 |====
