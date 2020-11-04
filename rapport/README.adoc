@@ -45,12 +45,14 @@ permettrait de faire de façon générale.
 
 *_Note : 15 lignes max, version anglaise du texte précédent_*
 
-Ligula dapibus egestas. Donec sed velit ac lectus mattis sagittis.
+ Swypeek is a convenient application which allows a group of people to decide on a movie to watch. The selection is done through a practical and intuitive interface, making sure the movie chosen pleases everyone. 
 
-In hac habitasse platea dictumst. Maecenas in ligula. Duis tincidunt
-odio sollicitudin quam. Nullam non mauris. Phasellus lacinia, velit sit
-amet bibendum euismod, leo diam interdum ligula, eu scelerisque sem
-purus in tellus.
+The picking process is based on the simple "swipe" mechanism. In the case of a small group, a movie is simultaneously presented to all of the party participants, along with a small description and a trailer. Each person will then either swipe right if they feel enthusiastic about watching the movie, or left otherwise. As soon as everyone will have finished swiping the movie, another one will be suggested. The movie will be determined by unanimity.
+The movies displayed are selected by the application according to the user profiles, their preferences, and their tendencies. On the other hand, if the group of people is big, The application will select a certain number of movies. The users will be presented with two movies at a time and will have to swipe towards their favorite. The application then creates a sorted list of preference for each user and finally the movie is selected based on an accurate electoral system 
+
+ The group of people can either be precomposed, or formed online in the application by bringing together individuals who belong to the same institution (a school for example). To help allow these encounters, the app will contain a multi-communal social media feature centered around movie culture. Swypeek can be used in two mods: a face to face mod and a distance mod. In the latter, users will have the option to link their profile to their streaming platform in order to synchronize their movie player with the other group members.
+
+Swypeek serves people by helping them decide and giving each member of the group a chance to participate in the choice. Moreover, in these times of hardship, it can be nice to have distant movie nights with friends and even meet new people who share the same passion through the application.
 
 *Notes concenant le rapport*
 
