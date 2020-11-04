@@ -22,9 +22,9 @@ et entre PAN1 et PAN2 respectivement.
 | Nom        | Module1 | Module2 | Module3 | Module4 | ModuleN | Module SES | Test & Intégration
 | Nom Expert |         |         |         |         |         |            |
 
-| Eleve1     | X       |         |         |         |         |            |
+| Rita Abubaker     | X       |         |         |         |         |            |
 
-| Eleve2     |         | X       |         |         |         |            | X
+| Zachary Abessera     |         | X       |         |         |         |            | X
 
 | Eleve3     |         |         |         |         |         |            |
 
