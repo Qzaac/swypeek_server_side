@@ -4,7 +4,7 @@ image::../images/Diagramme_d_architecture_.png[Diagramme d'achitecture]
 
 ==== Description des blocs
 
-image::../images/diagramme_d_architecture_modules.png[Diagramme d'achitecture modules]
+image::../images/diagramme_d_achitecture_modules.png[Diagramme d'achitecture modules]
 
 Le schéma est constitué de 2 blocs principaux : Téléphone et PC. L’utilisateur interagit à l’aide de son téléphone via une application.
 
