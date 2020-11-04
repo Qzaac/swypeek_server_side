@@ -13,8 +13,8 @@ envisageable : titre, auteur, date, page web_*
 * [[IMDB]]IMDB : https://www.imdb.com/ _04/11/2020_
 * [[FilmCrave]]FilmCrave : https://www.filmcrave.com/ _04/11/2020_
 * [[Letterboxd]]Letterboxd : https://letterboxd.com/ _04/11/2020_
-* 
 
+////
 * [[RefShannon]]RefShannon : *C. E. SHANNON*, _A Mathematical Theory
 of Communication_, Reprinted with corrections from The Bell System
 Technical Journal, pages 379–423, 623–656, Vol. 27, 1948,
@@ -24,3 +24,4 @@ https://pact.wp.mines-telecom.fr/vitrine/
 * [[TOTO]]XXX : *M. S. Otor*, _Best paper ever_, Livre de la jungle,
 Volume 2, pages 33-34, 1777
 */
+////
