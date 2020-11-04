@@ -22,3 +22,6 @@ Description textuelle d’interface
 ==== InterfaceBloc2-4
 
 Description textuelle d’interface
+
+
+Toute l'application repose sur des blocs informatiqus et nécessitera donc une interface Java.
