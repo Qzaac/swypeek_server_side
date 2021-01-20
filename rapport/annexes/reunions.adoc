@@ -1,0 +1,29 @@
+=== Comptes Rendus de réunions
+
+==== Réunion du 26/10/2020
+
+* Présents:
+** Mehdi
+** Rita
+** Abdelali
+** Zachary
+** Aurélien
+** Jules
+** Laurent
+* Sujets abordés
+** *Répartition des tâches PAN1*
+** *Modules* : On ne sait pas si notre nombre de modules suffit -> on a envoyé un mail à JC Dufourd, il faut encore contacter un expert pour streaming multimedia
+* Actions à entreprendre:
+** Réunion prévue 28/10/2020 pour s'occuper du diagramme d'architecture
+** Réunion prévue 30/10/2020 pour s'occuper de la présentation
+
+==== Réunion du 28/10/2020
+* Présents:
+** Mehdi
+** Rita
+** Zachary
+** Jules
+** Laurent
+** Olivia
+* Sujets abordés
+** *Répartition des modules*
