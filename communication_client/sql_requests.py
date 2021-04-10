@@ -1,6 +1,5 @@
 import sqlite3
 import flask
-from termcolor import colored
 import secrets
 import bcrypt
 import datetime as dt
@@ -90,10 +89,12 @@ def delete_rows(table, id_name, id_value):
         conn.commit()
         if cur.rowcount == 0:
             conn.close()
-            return colored('Failed to delete ' + id_name + ' = ' + id_value + ' from ' + table, 'red')
+            return 'Failed to delete ' + id_name + ' = ' + id_value + ' from ' + table
     except sqlite3.Error as err:
         conn.close()
-        return colored(str(err), 'red')
+        return str(err)
     conn.close()
-    return colored(id_name + ' = ' + id_value + ' from ' + table + ' was successfully deleted.', 'green')
+    return id_name + ' = ' + id_value + ' from ' + table + ' was successfully deleted.'
+
+
         

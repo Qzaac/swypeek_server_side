@@ -7,6 +7,10 @@ import sql_requests_reco as data
 max_id_users = data.maxIdUsers()
 max_id_movies = data.maxIdMovies()
 
+root = "/home/qzaac/tetech1A/PACT/seveur"
+path_to_data = "/recommandation/data/"
+#en vrai il faudra mettre qlq chose comme /home/ubuntu/serveur
+
 #CE QUI PREND DU TEMPS C'EST initSimMatrix (environ 12 secondes) sur les 14 au total
 
 #à chaque fois je mets des loads et des save (quand c'est des update)
@@ -33,15 +37,16 @@ def initRatingsMatrix():
     for (user, movie, rating) in ratings:
         matrix[user][movie] = rating
 
-    np.save('data/ratings_matrix', matrix)
+    np.save(root + path_to_data + 'ratings_matrix', matrix)
     return 0
     
 
 def updateRatingsMatrix(user, movie):
     rating = data.importRating(user, movie)
-    matrix = np.load('data/ratings_matrix.npy')
+    matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
+    
     matrix[user][movie] = rating
-    np.save('data/ratings_matrix', matrix)
+    np.save(root + path_to_data + 'ratings_matrix', matrix)
     return 0
 
 
@@ -51,7 +56,7 @@ def realMoviesVector():
     vector = np.full(max_id_movies+1, 0)
     for movie in movie_ids:
         vector[movie] = 1
-    np.save('data/real_movies', vector)
+    np.save(root + path_to_data + 'real_movies', vector)
     return 0
 
 #never used but same idea as realMoviesVector
@@ -60,13 +65,13 @@ def realUsersVector():
     vector = np.full(max_id_users+1, 0)
     for user in user_ids:
         vector[user] = 1
-    np.save('data/real_users', vector)
+    np.save(root + path_to_data + 'real_users', vector)
     return 0
 
 
 def averageVector():
     vector = np.full(max_id_users + 1, 0, dtype = float)
-    ratings_matrix = np.load('data/ratings_matrix.npy')
+    ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
 
     for i in range(max_id_users + 1):
         boolean_vector = (ratings_matrix[i] != -1)
@@ -77,13 +82,13 @@ def averageVector():
         else :
             vector[i] = sum/number_of_ratings
     
-    np.save('data/average_vector', vector)
+    np.save(root + path_to_data + 'average_vector', vector)
 
     return 0
 
 def updateAverageVector(user):
-    vector = np.load('data/average_vector.npy')
-    ratings_matrix = np.load('data/ratings_matrix.npy')
+    vector = np.load(root + path_to_data + 'average_vector.npy')
+    ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
 
     boolean_vector = (ratings_matrix[user] != -1)
     sum = np.sum(boolean_vector*ratings_matrix[user])
@@ -92,8 +97,7 @@ def updateAverageVector(user):
         vector[user] = 0
     else :
         vector[user] = sum/number_of_ratings
-    
-    np.save('data/average_vector', vector)
+    np.save(root + path_to_data + 'average_vector', vector)
     return 0
 
 
@@ -112,8 +116,8 @@ def sim(user1, user2, ratings_matrix, average_vector):
 
 
 def initSimMatrix():
-    ratings_matrix = np.load('data/ratings_matrix.npy')
-    average_vector = np.load('data/average_vector.npy')
+    ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
+    average_vector = np.load(root + path_to_data + 'average_vector.npy')
     sim_matrix = np.zeros((max_id_users + 1, max_id_users + 1))
     
     for i in range(max_id_users + 1):
@@ -122,7 +126,7 @@ def initSimMatrix():
             sim_matrix[i][j] = sim(i,j, ratings_matrix, average_vector)
             sim_matrix[j][i] = sim_matrix[i][j]
         
-    np.save('data/sim_matrix', sim_matrix)
+    np.save(root + path_to_data + 'sim_matrix', sim_matrix)
     return 0
 
 
@@ -141,11 +145,8 @@ def pred(user, movie, threshold, sim_matrix, ratings_matrix, average_vector):
     return average_vector[user] + sum1/sum2
 
 
-def computePredMatrix(group_id, threshold):
-    ratings_matrix = np.load('data/ratings_matrix.npy')
-    average_vector = np.load('data/average_vector.npy')
-    sim_matrix = np.load('data/sim_matrix.npy')
-
+def computePredMatrix(group_id, threshold, ratings_matrix, average_vector):
+    sim_matrix = np.load(root + path_to_data + 'sim_matrix.npy')
     user_list=data.user_list(group_id)
     pred_matrix = np.full((max_id_users+1, max_id_movies+1), -1, dtype=float)
 
@@ -160,7 +161,7 @@ def computePredMatrix(group_id, threshold):
 
 
 
-def proposition(group_id, max_views, threshold = 0.8, limit=100):
+def proposition(group_id, threshold = 0.8, limit=100):
     """
     given a group id and a maximum number of people who have seen a movie
     returns a sorted (by average of ratings and predictions) list of movie IDs with the average
@@ -171,9 +172,13 @@ def proposition(group_id, max_views, threshold = 0.8, limit=100):
         - limit : the maximum number of movies in the list (100, for instance)
     if the final list is [] then no predictions could be made
     """
+ 
     user_list=data.user_list(group_id)
-    real_movies = realMoviesVector()
-    pred_matrix = computePredMatrix(group_id, threshold)
+    max_views=len(user_list)
+    real_movies = np.load(root + path_to_data + 'real_movies.npy')
+    ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
+    average_vector = np.load(root + path_to_data + 'average_vector.npy')
+    pred_matrix = computePredMatrix(group_id, threshold, ratings_matrix, average_vector)
     movies_ranking=[]
 
     for movie in range(max_id_movies + 1):
@@ -197,12 +202,12 @@ def proposition(group_id, max_views, threshold = 0.8, limit=100):
             else:
                 sum+=rating
         
-        if(views <= max_views and real_movies[movie]==1 and divide!=0):
+        if(views < max_views and real_movies[movie]==1 and divide!=0):
             average=sum/divide
             movies_ranking.append((movie, average))
 
     movies_ranking = sorted(movies_ranking, key=lambda t : t[1], reverse=True)[:limit]
-    np.save('data/movies_ranking', movies_ranking)
+    np.save(root + path_to_data + 'movies_ranking_group' + str(group_id), movies_ranking)
     return 0
 
 #alors en fait LOL il faut tout changer dès que : on ajoute/supprime film/user

@@ -1,9 +1,16 @@
 import flask
 import sql_requests
+import numpy as np
 import bcrypt
+import sys
+sys.path.insert(1, '../recommandation')
+import algo
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+
+root = "/home/qzaac/tetech1A/PACT/seveur"
+path_to_data = "/recommandation/data/"
 
 
 def dict_factory(cursor, row):
@@ -33,13 +40,28 @@ def add_row_users():
     data = flask.request.form.to_dict()
     #hashes the password of the user with random salt
     data['password'] = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt()).decode()
-    #ajouter un token généré automatiquement
+    #TODO: ajouter un token généré automatiquement
     sql_requests.add_row('users', data)
     return ""
 
 @app.route('/api/v0/resources/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
     return sql_requests.delete_rows('users', 'user_id', user_id)
+
+
+@app.route('/api/v0/start_small_group', methods=['GET'])
+def startSmallGroup():
+    group_id = flask.request.args.get('group_id')
+    algo.proposition(int(group_id))
+    movies_ranking = np.load(root + path_to_data + 'movies_ranking_group' + group_id + '.npy')
+    if(movies_ranking.size == 0):
+        return '-3'
+    else:    
+        movie_id = movies_ranking[0][0]
+        np.save(root + path_to_data + 'movies_ranking_group' + group_id, movies_ranking[1:])
+        return str(int(movie_id))
+
+#ex de la gueule de la requete : /api/v0/start_small_group?group_id=value
 
 #idée = faire une requête qui s'exec à chaque fois qu'un utilisateur swipe. ce sera une requête PUT
 #tant qu'il y a encore des gens qui n'ont pas swipé, ça se contente de dire que l'user qui vient de swiper a swipé 

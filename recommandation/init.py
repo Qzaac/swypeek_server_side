@@ -1,4 +1,4 @@
-import main
+import algo as main
 
 
 def init():
@@ -7,5 +7,6 @@ def init():
     main.realUsersVector()
     main.averageVector()
     main.initSimMatrix()
+
 
 init()
