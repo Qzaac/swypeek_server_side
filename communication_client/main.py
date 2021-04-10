@@ -52,8 +52,8 @@ def delete_user(user_id):
 #def 
 
 #EN LOCAL:
-#app.run()
+app.run()
 
 #SUR LA VM:
-app.run(host='0.0.0.0', port=80)
+#app.run(host='0.0.0.0', port=80)
 

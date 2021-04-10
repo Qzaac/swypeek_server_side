@@ -6,11 +6,10 @@ import bcrypt
 import datetime as dt
 
 #PATH when on the VM
-data_file='/home/ubuntu/api_pact/swypeek_api/serveur/swypeek.db'
+#data_file='/home/ubuntu/api_pact/swypeek_api/serveur/swypeek.db'
 
 #Normal PATH
-#data_file='swypeek.db'
-
+data_file='../swypeek.db'
 
 def dict_factory(cursor, row):
     """used to turn lists into dictionaries while using sqlite

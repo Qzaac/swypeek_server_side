@@ -1,7 +1,7 @@
 import sqlite3
 import numpy as np
 
-data_file='swypeek_old.db'
+data_file='../swypeek.db'
 
 
 def importRatings():
