@@ -76,7 +76,7 @@ def check_credentials():
         cur.execute('UPDATE users SET token_value = ' + str(token) + ", expiration_date = '" + expiration_date + "' WHERE user_id = ?", [str(user_id)])
         conn.commit()
         conn.close()
-        return "New token : " + str(token) + " (expires " + expiration_date + ")"
+        return str(results[0][0])
     else:
         conn.close()
         return "Wrong password"
@@ -138,5 +138,14 @@ def getMovieSpec(movie_id):
     results = cur.execute('SELECT * FROM movies WHERE movie_id = ?', [movie_id]).fetchall()[0]
     conn.close()
     return results
+
+def numberCommonGenres(movie_id1,movie_id2):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    genreList=cur.execute("(SELECT genres FROM movies where movie_id =?;) INTERSECT (SELECT genres FROM movies where movie_id=?;)"), [movie_id1,movie_id2]
+    conn.close()
+    return len(genreList)
+
+
 
 

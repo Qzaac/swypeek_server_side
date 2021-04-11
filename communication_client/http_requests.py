@@ -87,7 +87,7 @@ def getNewMovie(data):
 query = input()
 
 if(query=="add_account"):
-    add_account({'username':'Aurelien', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'acastre@enst.fr', 'password':'admin', 'main_language':1, 'token_value':'35435431384', 'expiration_date':'2022-05-02'})
+    
 elif(query=="existing_user"):
     email=input()
     existing_user(email)
@@ -107,4 +107,14 @@ else:
 #add_user_to_group({'user_id':'42', 'group_id':'5', 'nickname':'jeanjass'})
 #check_group_credentials({'group_name':'pact11', 'group_code':'secured'})
 #getNewMovie({'group_id':'4', 'user_id':'97', 'swipe_direction':'-1'})
-get_movie_spec(6)
+#get_movie_spec(6)
+
+
+#add_account({'username':'Aurelien', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'acastre@enst.fr', 'password':'moulamax', 'token_value':'35435431384', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Mehdi', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'mehdi.bentaleb@telecom-paris.fr', 'password':'moulamax', 'token_value':'65465314684', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Olivia', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'olivia.hennequin@telecom-paris.fr', 'password':'moulamax', 'token_value':'6546535542244', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Zachary', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'zakabessera@gmail.com', 'password':'moulamax', 'token_value':'654354654684', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Abdelali', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'abdelali.boukhari@telecom-paris.fr', 'password':'moulamax', 'token_value':'54654684684', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Rita', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'rita.abubaker@telecom-paris.fr', 'password':'moulamax', 'token_value':'468435646854', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Laurent', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'laurent.chhy@telecom-paris.fr', 'password':'moulamax', 'token_value':'3546545434', 'expiration_date':'2022-05-02'})
+#add_account({'username':'Jules', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'jules.dany@telecom-paris.fr', 'password':'moulamax', 'token_value':'65465315465484', 'expiration_date':'2022-05-02'})

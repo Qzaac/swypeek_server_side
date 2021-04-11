@@ -11,7 +11,10 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 socketio = fsocket.SocketIO(app)
 
-root = "/home/qzaac/tetech1A/PACT/seveur"
+#PATH doréli1
+#root = "/home/qzaac/tetech1A/PACT/seveur"
+#PATH de zako
+root = "/users/Zac/Documents/serveur"
 path_to_data = "/recommandation/data/"
 
 
@@ -140,6 +143,10 @@ def getNewMovie():
 @socketio.on('join')
 def on_join(group_id):
     fsocket.join_room(group_id)
+
+@socketio.on('autre message')
+def on_autre_message():
+    fsocket.emit('')
 
 
 #quand un utilisateur démarre le début des prédictions on envoie le film à tous les autres
