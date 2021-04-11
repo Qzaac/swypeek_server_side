@@ -45,6 +45,10 @@ def existing_user(email):
     x = requests.get(url + '/api/v0/resources/users?email=' + email)
     print(json.dumps(x.json(), sort_keys=True, indent=4))
 
+def get_movie_spec(movie_id):
+    x = requests.get(url + '/api/v0/resources/movie?movie_id='+str(movie_id))
+    print(x.text)
+
 
 # ---------CONNECTION--------- #
 
@@ -102,4 +106,5 @@ else:
 #add_group({'group_name':'pact11', 'created_at':'2020-04-15', 'group_code':'secured', 'group_max_size':900})
 #add_user_to_group({'user_id':'42', 'group_id':'5', 'nickname':'jeanjass'})
 #check_group_credentials({'group_name':'pact11', 'group_code':'secured'})
-getNewMovie({'group_id':'4', 'user_id':'97', 'swipe_direction':'-1'})
+#getNewMovie({'group_id':'4', 'user_id':'97', 'swipe_direction':'-1'})
+get_movie_spec(6)

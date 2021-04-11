@@ -69,6 +69,12 @@ def check_group_credentials():
     """returns group_id on success"""
     return sql_requests.check_group_credentials()
 
+@app.route('/api/v0/resources/movie')
+def getMovieSpec():
+    """returns a dictionnary with all specs of a movie given in the database"""
+    movie_id = flask.request.args.get('movie_id')
+    return sql_requests.getMovieSpec(movie_id)
+
 
 
 @app.route('/api/v0/resources/users/<user_id>', methods=['DELETE'])
@@ -98,6 +104,8 @@ def getNewMovie():
     
     everyone_swiped = True
     everyone_swiped_right = True
+
+    #algo.refreshClassement(movie_id, swipe_list)
 
     for swipe in swipe_list:
         if(swipe == 0):

@@ -131,5 +131,12 @@ def delete_rows(table, id_name, id_value):
     conn.close()
     return id_name + ' = ' + id_value + ' from ' + table + ' was successfully deleted.'
 
+def getMovieSpec(movie_id):
+    conn = sqlite3.connect(data_file)
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+    results = cur.execute('SELECT * FROM movies WHERE movie_id = ?', [movie_id]).fetchall()[0]
+    conn.close()
+    return results
 
 
