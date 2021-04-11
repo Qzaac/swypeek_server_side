@@ -34,6 +34,7 @@ def add_row(table, data):
         "INSERT INTO " + table + " (" + ', '.join(data.keys()) + ") VALUES " + question_marks + ";", list(data.values()))
     conn.commit()
     conn.close()
+    return cur.lastrowid
 
 
 def existing_user():
@@ -81,6 +82,40 @@ def check_credentials():
         return "Wrong password"
 
 
+def check_group_credentials():
+    data = flask.request.form
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    
+    group_code = data.get('group_code')
+    group_name = data.get('group_name')
+
+    results = cur.execute('SELECT group_id FROM groups WHERE group_name = ? AND group_code = ?', [group_name, group_code]).fetchall()
+
+    if(results==[]):
+        conn.close()
+        return "Wrong group code or group name"
+    else:
+        conn.close()
+        return str(results[0][0])
+
+
+def update_has_swiped(group_id, user_id, swipe_direction):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    cur.execute('UPDATE users_groups SET has_swiped = ? WHERE user_id = ? AND group_id = ?', [swipe_direction, user_id, group_id])
+    conn.commit()
+    results = cur.execute('SELECT has_swiped FROM users_groups WHERE group_id = ?', [group_id]).fetchall()
+    conn.close()
+    return [i[0] for i in results]
+
+def reset_has_swiped(group_id):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    cur.execute('UPDATE users_groups SET has_swiped = 0 WHERE group_id = ?', [group_id])
+    conn.commit()
+    conn.close()
+
 def delete_rows(table, id_name, id_value):
     conn = sqlite3.connect(data_file)
     cur = conn.cursor()
@@ -97,4 +132,4 @@ def delete_rows(table, id_name, id_value):
     return id_name + ' = ' + id_value + ' from ' + table + ' was successfully deleted.'
 
 
-        
+
