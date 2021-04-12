@@ -2,10 +2,10 @@ import requests
 import json
 
 #EN LOCAL:
-url = 'http://127.0.0.1:5000'
+#url = 'http://127.0.0.1:5000'
 
 #SUR LA VM:
-#url = 'http://pact11.r2.enst.fr:80'
+url = 'http://pact11.r2.enst.fr:80'
 
 # ---------CREATE AN ACCOUNT--------- #
 
@@ -83,24 +83,34 @@ def getNewMovie(data):
     print(x.text)
 
 
-"""
+
 query = input()
 
 if(query=="add_account"):
-    
+    add_account({'username':'Don Quichotte', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'don_quichotte@gmail.com', 'password':'moulamax', 'token_value':'304035431384', 'expiration_date':'2022-05-02'})
 elif(query=="existing_user"):
     email=input()
     existing_user(email)
 elif(query=="check_credentials"):
-    check_credentials({'email':'acastre@enst.r', 'password':'admin'}) #wrong email
-    check_credentials({'email':'acastre@enst.fr', 'password':'admn'}) #wrong pwd
-    check_credentials({'email':'acastre@enst.fr', 'password':'admin'}) #everything is right !
+    check_credentials({'email':'don_quichotte@gmail.cm', 'password':'moulamax'}) #wrong email
+    check_credentials({'email':'don_quichotte@gmail.com', 'password':'moulxxx'}) #wrong pwd
+    check_credentials({'email':'don_quichotte@gmail.com', 'password':'moulamax'}) #everything is right !
 elif(query=="delete_user"):
     user=input()
     delete_user(user)
+elif(query=="startSmallGroup"):
+    startSmallGroup(4)
+elif(query=="add_group"):
+    add_group({'group_name':'pact', 'created_at':'2020-04-15', 'group_code':'yay', 'group_max_size':900})
+elif(query=="add_user_to_group")
+    add_user_to_group({'user_id':'42', 'group_id':'5', 'nickname':'jeanjass'})
+elif(query=="getNewMovie"):
+    getNewMovie({'group_id':'4', 'user_id':'97', 'swipe_direction':'-1'})
+elif(query=="get_movie_spec"):
+    get_movie_spec(6)
 else:
-    print("Please type one of these : add_account, existing_user, check_credentials, delete_user")
-"""
+    print("Please type one of these : add_account, existing_user, check_credentials, delete_user, startSmallGroup, add_group, add_user_to_group, getNewMovie, get_movie_spec")
+
 
 #startSmallGroup(4)
 #add_group({'group_name':'pact11', 'created_at':'2020-04-15', 'group_code':'secured', 'group_max_size':900})

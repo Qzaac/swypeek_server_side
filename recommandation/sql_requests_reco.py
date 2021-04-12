@@ -1,7 +1,11 @@
 import sqlite3
 import numpy as np
 
-data_file='../swypeek.db'
+#PATH when on the VM
+data_file='/home/ubuntu/serveur/swypeek.db'
+
+#Normal PATH
+#data_file='../swypeek.db'
 
 
 def importRatings():

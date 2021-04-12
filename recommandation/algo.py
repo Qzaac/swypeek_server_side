@@ -7,9 +7,14 @@ import sql_requests_reco as data
 max_id_users = data.maxIdUsers()
 max_id_movies = data.maxIdMovies()
 
-root = "/home/qzaac/tetech1A/PACT/seveur"
+#PATH doréli1
+#root = "/home/qzaac/tetech1A/PACT/seveur"
+#PATH de zako
+#root = "/users/Zac/Documents/serveur"
+#path_to_data = "/recommandation/data/"
+#PATH du serveur
+root = "/home/ubuntu/serveur"
 path_to_data = "/recommandation/data/"
-#en vrai il faudra mettre qlq chose comme /home/ubuntu/serveur
 
 #CE QUI PREND DU TEMPS C'EST initSimMatrix (environ 12 secondes) sur les 14 au total
 

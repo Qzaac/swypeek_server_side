@@ -8,13 +8,16 @@ sys.path.insert(1, '../recommandation')
 import algo
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
 socketio = fsocket.SocketIO(app)
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #PATH de zako
-root = "/users/Zac/Documents/serveur"
+#root = "/users/Zac/Documents/serveur"
+#path_to_data = "/recommandation/data/"
+#PATH du serveur
+root = "/home/ubuntu/serveur"
 path_to_data = "/recommandation/data/"
 
 
@@ -160,8 +163,8 @@ def on_start(data):
 
 
 #EN LOCAL:
-socketio.run(app)
+#socketio.run(app)
 
 #SUR LA VM:
-#socketio.run(app, host='0.0.0.0', port=80)
+socketio.run(app, host='0.0.0.0', port=80)
 
