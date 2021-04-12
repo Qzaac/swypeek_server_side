@@ -75,7 +75,7 @@ def check_group_credentials():
     """returns group_id on success"""
     return sql_requests.check_group_credentials()
 
-@app.route('/api/v0/resources/movie')
+@app.route('/api/v0/resources/movie',  methods=['GET'])
 def getMovieSpec():
     """returns a dictionnary with all specs of a movie given in the database"""
     movie_id = flask.request.args.get('movie_id')

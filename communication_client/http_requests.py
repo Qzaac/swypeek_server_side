@@ -102,7 +102,7 @@ elif(query=="startSmallGroup"):
     startSmallGroup(4)
 elif(query=="add_group"):
     add_group({'group_name':'pact', 'created_at':'2020-04-15', 'group_code':'yay', 'group_max_size':900})
-elif(query=="add_user_to_group")
+elif(query=="add_user_to_group"):
     add_user_to_group({'user_id':'42', 'group_id':'5', 'nickname':'jeanjass'})
 elif(query=="getNewMovie"):
     getNewMovie({'group_id':'4', 'user_id':'97', 'swipe_direction':'-1'})

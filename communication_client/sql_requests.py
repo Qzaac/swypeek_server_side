@@ -137,7 +137,7 @@ def getMovieSpec(movie_id):
     cur = conn.cursor()
     results = cur.execute('SELECT * FROM movies WHERE movie_id = ?', [movie_id]).fetchall()[0]
     conn.close()
-    return results
+    return results.get('trailer_link')
 
 def numberCommonGenres(movie_id1,movie_id2):
     conn = sqlite3.connect(data_file)
