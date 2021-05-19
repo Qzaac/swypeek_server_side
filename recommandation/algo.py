@@ -6,15 +6,16 @@ import sql_requests_reco as data
 
 max_id_users = data.maxIdUsers()
 max_id_movies = data.maxIdMovies()
+genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres + (the last one is animation)
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #PATH de zako
-#root = "/users/Zac/Documents/serveur"
-#path_to_data = "/recommandation/data/"
-#PATH du serveur
-root = "/home/ubuntu/serveur"
+root = "/users/Zac/Documents/serveur"
 path_to_data = "/recommandation/data/"
+#PATH du serveur
+#root = "/home/ubuntu/serveur"
+#path_to_data = "/recommandation/data/"
 
 #CE QUI PREND DU TEMPS C'EST initSimMatrix (environ 12 secondes) sur les 14 au total
 
@@ -214,6 +215,22 @@ def proposition(group_id, threshold = 0.8, limit=100):
     movies_ranking = sorted(movies_ranking, key=lambda t : t[1], reverse=True)[:limit]
     np.save(root + path_to_data + 'movies_ranking_group' + str(group_id), movies_ranking)
     return 0
+
+
+def firstMovies():
+    """based on the list of lists, returns 20 movie_id chosen randomly
+    (we choose 2 movies randomly for each genre in genre_ids in the most rated movies of this genre)"""
+    most_rated_by_genres = np.load(root + path_to_data + 'most_rated_by_genres.npy')
+    first_movies = []
+    for genre_id in genre_ids:
+        top_movies_by_genre = most_rated_by_genres[genre_id]
+        for k in range(2):
+            i = np.random.randint(0,25)
+            while(top_movies_by_genre[i] in first_movies):
+                i = np.random.randint(0,25)
+            first_movies.append(top_movies_by_genre[i])
+    print(first_movies)
+    return first_movies
 
 #alors en fait LOL il faut tout changer dès que : on ajoute/supprime film/user
 

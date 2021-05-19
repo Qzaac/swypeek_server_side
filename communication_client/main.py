@@ -8,17 +8,17 @@ sys.path.insert(1, '../recommandation')
 import algo
 
 app = flask.Flask(__name__)
-#app.config["DEBUG"] = True
+app.config["DEBUG"] = True
 socketio = fsocket.SocketIO(app)
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #PATH de zako
-#root = "/users/Zac/Documents/serveur"
-#path_to_data = "/recommandation/data/"
-#PATH du serveur
-root = "/home/ubuntu/serveur"
+root = "/users/Zac/Documents/serveur"
 path_to_data = "/recommandation/data/"
+#PATH du serveur
+#root = "/home/ubuntu/serveur"
+#path_to_data = "/recommandation/data/"
 
 
 def dict_factory(cursor, row):
@@ -141,6 +141,10 @@ def getNewMovie():
         return '-1'
 
 
+@app.route('/api/v0/first_swipes', methods=['GET'])
+def getFirstMovies():
+    return str(algo.firstMovies())
+
 
 #quand un utilisateur envoie un socket 'join' avec le group_id dans le message ça le rajoute à la room qui port le numéro du group_id
 @socketio.on('join')
@@ -156,15 +160,29 @@ def on_autre_message():
 #ou bien lorsqu'un utilisateur swipe et est le dernier a swipé et un film est proposé
 @socketio.on('new_movie')
 def on_start(data):
-    group_id = data.get('group_id')
-    movie_id = data.get('movie_id')
+    data=eval(data)
+    group_id = int(data.get('group_id'))
+    movie_id = int(data.get('movie_id'))
     fsocket.emit('movie_id', movie_id, room=group_id)
 
+@socketio.on('right')
+def on_start(data):
+    data=eval(data)
+    user_id = int(data.get('user_id'))
+    movie_id = int(data.get('movie_id'))
+    sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'7'})
+
+@socketio.on('left')
+def on_start(data):
+    data=eval(data)
+    user_id = int(data.get('user_id'))
+    movie_id = int(data.get('movie_id'))
+    sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'3'})
 
 
 #EN LOCAL:
-#socketio.run(app)
+socketio.run(app)
 
 #SUR LA VM:
-socketio.run(app, host='0.0.0.0', port=80)
+#socketio.run(app, host='0.0.0.0', port=80)
 

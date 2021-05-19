@@ -3,12 +3,15 @@ import flask
 import secrets
 import bcrypt
 import datetime as dt
+import numpy as np
 
 #PATH when on the VM
-data_file='/home/ubuntu/serveur/swypeek.db'
+#data_file='/home/ubuntu/serveur/swypeek.db'
+
+
 
 #Normal PATH
-#data_file='../swypeek.db'
+data_file='../swypeek_updated.db'
 
 def dict_factory(cursor, row):
     """used to turn lists into dictionaries while using sqlite
@@ -42,7 +45,7 @@ def existing_user():
     conn = sqlite3.connect(data_file)
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    results = cur.execute('SELECT user_id, username FROM users WHERE email = ? LIMIT 2', [query_parameters.get('email')]).fetchall()
+    results = cur.execute('SELECT user_id, username FROM users WHERE email = ?', [query_parameters.get('email')]).fetchall()
     conn.close()
     return flask.jsonify(results)
 
@@ -139,12 +142,16 @@ def getMovieSpec(movie_id):
     conn.close()
     return results.get('trailer_link')
 
+"""
 def numberCommonGenres(movie_id1,movie_id2):
     conn = sqlite3.connect(data_file)
     cur = conn.cursor()
     genreList=cur.execute("(SELECT genres FROM movies where movie_id =?;) INTERSECT (SELECT genres FROM movies where movie_id=?;)"), [movie_id1,movie_id2]
     conn.close()
     return len(genreList)
+"""
+
+
 
 
 

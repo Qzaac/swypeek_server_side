@@ -2,10 +2,10 @@ import requests
 import json
 
 #EN LOCAL:
-#url = 'http://127.0.0.1:5000'
+url = 'http://127.0.0.1:5000'
 
 #SUR LA VM:
-url = 'http://pact11.r2.enst.fr:80'
+#url = 'http://pact11.r2.enst.fr:80'
 
 # ---------CREATE AN ACCOUNT--------- #
 
@@ -82,10 +82,15 @@ def getNewMovie(data):
     x = requests.put(url+'/api/v0/get_new_movie', data=data)
     print(x.text)
 
+def getFirstMovies():
+    #example of data: {'group_id':'4', 'user_id':'92', 'swipe_direction':'-1'}
+    x = requests.get(url+'/api/v0/first_swipes')
+    print(x.text)
 
+getFirstMovies()
 
-query = input()
-
+#query = input()
+"""
 if(query=="add_account"):
     add_account({'username':'Don Quichotte', 'created_at':'2020-05-20', 'birth_date':'2000-01-20', 'email':'don_quichotte@gmail.com', 'password':'moulamax', 'token_value':'304035431384', 'expiration_date':'2022-05-02'})
 elif(query=="existing_user"):
@@ -111,7 +116,7 @@ elif(query=="get_movie_spec"):
 else:
     print("Please type one of these : add_account, existing_user, check_credentials, delete_user, startSmallGroup, add_group, add_user_to_group, getNewMovie, get_movie_spec")
 
-
+"""
 #startSmallGroup(4)
 #add_group({'group_name':'pact11', 'created_at':'2020-04-15', 'group_code':'secured', 'group_max_size':900})
 #add_user_to_group({'user_id':'42', 'group_id':'5', 'nickname':'jeanjass'})
