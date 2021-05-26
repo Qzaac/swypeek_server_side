@@ -11,9 +11,23 @@ initSimMatrix c'est environ 12 secondes
 SimMobies et percentiles prennent pas mal de temps aussi
 """
 
+"""
+MIGHT BE USEFUL IF DOWNLOADS AREN'T WORKING ON THE SERVER: 
+
+import ssl
+try:
+     _create_unverified_https_context =     ssl._create_unverified_context
+except AttributeError:
+     pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+"""
+
 def init():
     download('stopwords')
     download('wordnet')
+    download('punkt')
     main.initRatingsMatrix()
     main.realMoviesVector()
     main.realUsersVector()

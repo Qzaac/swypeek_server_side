@@ -135,7 +135,7 @@ def getNewMovie():
                 swiped_movie_id = movies_ranking[0][0]
                 np.save(root + path_to_data + 'movies_ranking_group' + data.get('group_id'), movies_ranking[1:])
                 #given
-                algo.refreshRanking(swiped_movie_id, swipe_list, data.get('group_id'))
+                algo.refreshRanking(int(swiped_movie_id), swipe_list, data.get('group_id'))
                 movies_ranking = np.load(root + path_to_data + 'movies_ranking_group' + data.get('group_id') + '.npy')
                 movie_id = movies_ranking[0][0]
                 

@@ -21,6 +21,7 @@ path_to_data = "/recommandation/data/"
 
 #only used in proposition to check if a movie_id matches a real movie
 def realMoviesVector():
+    max_id_movies = data.maxIdMovies()
     movie_ids = data.allMovieIds()
     vector = np.full(max_id_movies+1, 0)
     for movie in movie_ids:
@@ -30,6 +31,7 @@ def realMoviesVector():
 
 #never used but same idea as realMoviesVector
 def realUsersVector():
+    max_id_users = data.maxIdUsers()
     user_ids = data.allUserIds()
     vector = np.full(max_id_users+1, 0)
     for user in user_ids:
@@ -38,6 +40,8 @@ def realUsersVector():
     return 0
 
 def initRatingsMatrix():
+    max_id_movies = data.maxIdMovies()
+    max_id_users = data.maxIdUsers()
     ratings = data.importRatings()
 
     matrix = np.full((max_id_users + 1, max_id_movies + 1), -1, dtype = float)
@@ -72,6 +76,7 @@ def shortlist(words):
     return shortlisted_words    
 
 def initSimMoviesMatrix():
+    max_id_movies = data.maxIdMovies()
     """saves in data a matrix of shape (max_id_movies + 1, max_id_movies + 1) of
     similarity between synopses such that matrix[i][j]=np.nan if i or j don't correspond to a real movie"""
 
@@ -136,6 +141,7 @@ def initSimMoviesMatrix():
 
 
 def initPercentilesMatrix():
+    max_id_movies = data.maxIdMovies()
     movies_sim_matrix = np.load(root + path_to_data + 'movies_sim_matrix.npy')
     matrix = np.full((max_id_movies+1, max_id_movies+1), np.nan, dtype=float)
     percentiles = np.load(root + path_to_data + 'percentiles.npy')
@@ -164,6 +170,7 @@ def updateRatingsMatrix(user, movie):
 
 
 def averageVector():
+    max_id_users = data.maxIdUsers()
     vector = np.full(max_id_users + 1, 0, dtype = float)
     ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
 
@@ -210,6 +217,7 @@ def sim(user1, user2, ratings_matrix, average_vector):
 
 
 def initSimMatrix():
+    max_id_users = data.maxIdUsers()
     ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
     average_vector = np.load(root + path_to_data + 'average_vector.npy')
     sim_matrix = np.zeros((max_id_users + 1, max_id_users + 1))
@@ -224,13 +232,15 @@ def initSimMatrix():
     return 0
 
 def updateSimMatrix(user):
+    max_id_users = data.maxIdUsers()
     ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
     average_vector = np.load(root + path_to_data + 'average_vector.npy')
     sim_matrix = np.load(root + path_to_data + 'sim_matrix.npy')
 
     length=sim_matrix.shape[0]
-    if(user>=length):
-        sim_matrix.resize((length+1,length+1))
+    add=user-length
+    if(add>=0):
+        sim_matrix.resize((length+add+1,length+add+1))
 
     for i in range(max_id_users+1):
         sim_matrix[i][user] = sim(i,user, ratings_matrix, average_vector)
@@ -255,6 +265,8 @@ def pred(user, movie, threshold, sim_matrix, ratings_matrix, average_vector):
 
 
 def computePredMatrix(group_id, threshold, ratings_matrix, average_vector):
+    max_id_movies = data.maxIdMovies()
+    max_id_users = data.maxIdUsers()
     sim_matrix = np.load(root + path_to_data + 'sim_matrix.npy')
     user_list=data.user_list(group_id)
     pred_matrix = np.full((max_id_users+1, max_id_movies+1), -1, dtype=float)
@@ -281,7 +293,7 @@ def proposition(group_id, threshold = 0.8, limit=100):
         - limit : the maximum number of movies in the list (100, for instance)
     if the final list is [] then no predictions could be made
     """
- 
+    max_id_movies = data.maxIdMovies()
     user_list=data.user_list(group_id)
     max_views=len(user_list)
     real_movies = np.load(root + path_to_data + 'real_movies.npy')
@@ -345,7 +357,7 @@ def refreshRanking(swiped_movie_id, swipe_list, group_id):
     for i, (movie_id, ranking) in enumerate(movies_ranking):
         genres_in_common = data.numberCommonGenres(swiped_movie_id, int(movie_id))
         min_number_genres = data.minNumberGenres(swiped_movie_id, int(movie_id))
-        percentile = percentiles_matrix[swiped_movie_id][int(movie_id)]
+        percentile = percentiles_matrix[int(swiped_movie_id)][int(movie_id)]
         movies_ranking[i][1] = ranking*(1 + s/nbr_of_users*(percentile**2 + (1 - percentile)*genres_in_common/min_number_genres))/2
 
     movies_ranking = sorted(movies_ranking, key=lambda t : t[1], reverse=True)
