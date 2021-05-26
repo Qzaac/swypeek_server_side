@@ -2,13 +2,14 @@ import sqlite3
 import numpy as np
 
 #PATH when on the VM
-#data_file='/home/ubuntu/serveur/swypeek_updated.db'
+#data_file='/home/ubuntu/serveur/swypeek_final.db'
 
 #Normal PATH
-data_file='../swypeek_updated.db'
+data_file='../swypeek_final.db'
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
+#path_to_data = "/recommandation/data/"
 #PATH de zako
 root = "/users/Zac/Documents/serveur"
 path_to_data = "/recommandation/data/"
@@ -105,3 +106,55 @@ def mostRatedByGenres():
     np.save(root + path_to_data + 'most_rated_by_genres', most_rated_by_genres)
     conn.close()
     
+def allSynopses():
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    list=cur.execute("SELECT movie_id, synopsis FROM movies;").fetchall()
+    conn.close()
+    return [(i[0], i[1]) for i in list]
+
+
+def numberCommonGenres(movie_id1,movie_id2):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    number=cur.execute("""
+    SELECT COUNT(*) 
+    FROM
+        (SELECT genre_id
+                FROM genres_movies 
+                INNER JOIN movies 
+                    ON movies.imdb_id = genres_movies.imdb_id
+            WHERE movies.movie_id = ?
+        INTERSECT
+        SELECT genre_id
+                FROM genres_movies 
+                INNER JOIN movies 
+                    ON movies.imdb_id = genres_movies.imdb_id
+            WHERE movies.movie_id = ?);
+    """, [movie_id1, movie_id2]).fetchall() 
+    conn.close()
+    return number[0][0]
+
+def minNumberGenres(movie_id1, movie_id2):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    number1=cur.execute("""
+    SELECT COUNT(*) 
+    FROM
+        (SELECT genre_id
+                FROM genres_movies 
+                INNER JOIN movies 
+                    ON movies.imdb_id = genres_movies.imdb_id
+            WHERE movies.movie_id = ?);
+    """, [movie_id1]).fetchall()[0][0]
+    number2=cur.execute("""
+    SELECT COUNT(*) 
+    FROM
+        (SELECT genre_id
+                FROM genres_movies 
+                INNER JOIN movies 
+                    ON movies.imdb_id = genres_movies.imdb_id
+            WHERE movies.movie_id = ?);
+    """, [movie_id2]).fetchall()[0][0]
+    conn.close()
+    return min(number1, number2)

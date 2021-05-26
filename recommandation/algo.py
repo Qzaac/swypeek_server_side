@@ -1,7 +1,8 @@
 import numpy as np
 import time
-
-debut = time.time()
+from nltk import *
+from sklearn.feature_extraction.text import TfidfVectorizer
+import re
 import sql_requests_reco as data
 
 max_id_users = data.maxIdUsers()
@@ -10,51 +11,13 @@ genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres 
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
+#path_to_data = "/recommandation/data/"
 #PATH de zako
 root = "/users/Zac/Documents/serveur"
 path_to_data = "/recommandation/data/"
 #PATH du serveur
 #root = "/home/ubuntu/serveur"
 #path_to_data = "/recommandation/data/"
-
-#CE QUI PREND DU TEMPS C'EST initSimMatrix (environ 12 secondes) sur les 14 au total
-
-#à chaque fois je mets des loads et des save (quand c'est des update)
-#LE RISQUE : si j'exécute plusieurs fonctions par requete, commme je fais des loads à chaque fois je vais avoir 
-# plusieurs fois la matrice dans la ram et donc c nul à chier
-# du coup
-# il faut que toutes les fonctions écrites ci-dessous se suffisent à elles-mêmes pour chaque requête 
-#faudrait faire un init qui crée tous les fichiers .npy d'abord genre avec les fonctions 
-#initratings, realmovies, realusers, averagevector (tous les trucs qui créent des fichiers .npy)
-
-#android envoie une requête
-#le serveur répond en loadant la liste qui a étée prélablament calculée
-#elle pop le premier film, le renvoie à android
-#elle save la nouvelle liste popée
-
-#pour savoir 1. quand s'arrêter 2. comment modifier le classement en fct des swipes
-#il faut stocker dans users_groups une colonne has_swiped avec true or false et faire des requêtes
-
-def initRatingsMatrix():
-    ratings = data.importRatings()
-
-    matrix = np.full((max_id_users + 1, max_id_movies + 1), -1, dtype = float)
-    
-    for (user, movie, rating) in ratings:
-        matrix[user][movie] = rating
-
-    np.save(root + path_to_data + 'ratings_matrix', matrix)
-    return 0
-    
-
-def updateRatingsMatrix(user, movie):
-    rating = data.importRating(user, movie)
-    matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
-    
-    matrix[user][movie] = rating
-    np.save(root + path_to_data + 'ratings_matrix', matrix)
-    return 0
-
 
 #only used in proposition to check if a movie_id matches a real movie
 def realMoviesVector():
@@ -72,6 +35,131 @@ def realUsersVector():
     for user in user_ids:
         vector[user] = 1
     np.save(root + path_to_data + 'real_users', vector)
+    return 0
+
+def initRatingsMatrix():
+    ratings = data.importRatings()
+
+    matrix = np.full((max_id_users + 1, max_id_movies + 1), -1, dtype = float)
+    
+    for (user, movie, rating) in ratings:
+        matrix[user][movie] = rating
+
+    np.save(root + path_to_data + 'ratings_matrix', matrix)
+    return 0
+
+def scrub_words(text): 
+
+    # remove html markup
+    text=re.sub("(<.*?>)","",text)
+
+    #remove non-ascii and digits
+    text=re.sub("(\\W|\\d)"," ",text)
+
+    #remove whitespace
+    text=text.strip()
+    return text
+
+def shortlist(words):
+    """delete useless words"""
+    stopWords = set(corpus.stopwords.words('english'))
+    shortlisted_words=[]
+    for w in words:
+        if w not in stopWords:
+            shortlisted_words.append(w)
+        if w == '':
+            shortlisted_words.remove(w)
+    return shortlisted_words    
+
+def initSimMoviesMatrix():
+    """saves in data a matrix of shape (max_id_movies + 1, max_id_movies + 1) of
+    similarity between synopses such that matrix[i][j]=np.nan if i or j don't correspond to a real movie"""
+
+    """also saves the list of percentiles"""
+    synopses_filled = ["rine"]*(max_id_movies+1)
+
+    updatedsynopsis=[]
+    
+    synopses=data.allSynopses()
+    
+    for (movie_id, synopsis) in synopses :
+        synopses_filled[movie_id]=synopsis
+
+    lemmatizer = WordNetLemmatizer()
+    
+
+    #simplify each synopsis and append it to a list (of list)
+    for s in synopses_filled :
+
+        words = word_tokenize(s)
+
+        #lowercase for everyone
+        lower_words=[word.lower() for word in words]
+
+        #Noise cancelling
+        cleaned_words=[scrub_words(w) for w in lower_words]
+
+        #Lemmatization
+        lemmatized_words=[lemmatizer.lemmatize(word=word,pos='v') for word in cleaned_words]
+
+        #get rid of useless words
+        shortlisted_words=shortlist(lemmatized_words)
+
+        updatedsynopsis.append(shortlisted_words)
+    
+    #Creating TFIDF vector
+
+    #list of simplified synopses
+    corpus = []
+    for s in updatedsynopsis :
+        corpus.append(' '.join(s))
+
+    vect = TfidfVectorizer(min_df=1, stop_words="english")
+    tfidf = vect.fit_transform(corpus)
+    pairwise_similarity = (tfidf * tfidf.T).toarray()
+    
+    for i in range(max_id_movies+1):
+        for j in range(i+1, max_id_movies+1):
+            if pairwise_similarity[i][j] >= 1:
+                pairwise_similarity[i][j]=np.nan
+                pairwise_similarity[j][i]=np.nan
+    
+    stats = pairwise_similarity.reshape(-1)
+    percentiles=[]
+    for i in range(101):
+        percentiles.append(np.nanpercentile(stats, i))
+
+    np.save(root + path_to_data + 'percentiles', np.array(percentiles))
+    np.save(root + path_to_data + 'movies_sim_matrix', pairwise_similarity)
+
+    return 0
+
+
+def initPercentilesMatrix():
+    movies_sim_matrix = np.load(root + path_to_data + 'movies_sim_matrix.npy')
+    matrix = np.full((max_id_movies+1, max_id_movies+1), np.nan, dtype=float)
+    percentiles = np.load(root + path_to_data + 'percentiles.npy')
+
+    for i in range(max_id_movies+1):
+        for j in range(i, max_id_movies+1):
+            sim = movies_sim_matrix[i][j]
+            if not(np.isnan(sim)):
+                for index, p in enumerate(percentiles):
+                    if sim<p:
+                        matrix[i][j]=(index-1)/100
+                        matrix[j][i]=(index-1)/100
+                        break;
+
+    np.save(root + path_to_data + 'percentiles_matrix', matrix)
+    return 
+
+
+def updateRatingsMatrix(user, movie):
+    rating = data.importRating(user, movie)
+    matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
+    
+    matrix[user][movie] = rating
+    np.save(root + path_to_data + 'ratings_matrix', matrix)
     return 0
 
 
@@ -135,6 +223,21 @@ def initSimMatrix():
     np.save(root + path_to_data + 'sim_matrix', sim_matrix)
     return 0
 
+def updateSimMatrix(user):
+    ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
+    average_vector = np.load(root + path_to_data + 'average_vector.npy')
+    sim_matrix = np.load(root + path_to_data + 'sim_matrix.npy')
+
+    length=sim_matrix.shape[0]
+    if(user>=length):
+        sim_matrix.resize((length+1,length+1))
+
+    for i in range(max_id_users+1):
+        sim_matrix[i][user] = sim(i,user, ratings_matrix, average_vector)
+        sim_matrix[user][i] = sim_matrix[i][user]
+    
+    np.save(root + path_to_data + 'sim_matrix', sim_matrix)
+    return 0
 
 #so many parameters because don't want to load many times
 def pred(user, movie, threshold, sim_matrix, ratings_matrix, average_vector):
@@ -213,6 +316,7 @@ def proposition(group_id, threshold = 0.8, limit=100):
             movies_ranking.append((movie, average))
 
     movies_ranking = sorted(movies_ranking, key=lambda t : t[1], reverse=True)[:limit]
+
     np.save(root + path_to_data + 'movies_ranking_group' + str(group_id), movies_ranking)
     return 0
 
@@ -227,32 +331,29 @@ def firstMovies():
         for k in range(2):
             i = np.random.randint(0,25)
             while(top_movies_by_genre[i] in first_movies):
-                i = np.random.randint(0,25)
+                i = (i+1)%25
             first_movies.append(top_movies_by_genre[i])
-    print(first_movies)
+
     return first_movies
 
-#alors en fait LOL il faut tout changer dès que : on ajoute/supprime film/user
+def refreshRanking(swiped_movie_id, swipe_list, group_id):
+    movies_ranking = np.load(root + path_to_data + 'movies_ranking_group' + str(group_id) + '.npy')
+    percentiles_matrix = np.load(root + path_to_data + 'percentiles_matrix.npy')
+    s = np.array(swipe_list).sum()
+    nbr_of_users = len(swipe_list)
 
-#on a besoin de le recalculer dès qu'une nouvelle note apparaît (pas un swipe, genre une vraie note)
-#ratings_matrix = initRatingsMatrix()
-#créer update matrix
-#print("après initRatingsMatrix:", time.time() - debut)
-#il faut recalculer average_vecotr[i] quand une note change
-#average_vector = averageVector()
-#créer update vecotr
-#print("après averageVector:", time.time() - debut)
+    for i, (movie_id, ranking) in enumerate(movies_ranking):
+        genres_in_common = data.numberCommonGenres(swiped_movie_id, int(movie_id))
+        min_number_genres = data.minNumberGenres(swiped_movie_id, int(movie_id))
+        percentile = percentiles_matrix[swiped_movie_id][int(movie_id)]
+        movies_ranking[i][1] = ranking*(1 + s/nbr_of_users*(percentile**2 + (1 - percentile)*genres_in_common/min_number_genres))/2
 
-#on pourrait modifier seulement les users qui ont vu le film dont la note vient d'être modifié MAIS plus simple de tout recalculer
-#sim_matrix = initSimMatrix()
-#print("après initSimMatrix:", time.time() - debut)
-#calculer à chaque début de groupe
-#pred_matrix = computePredMatrix(4, 0.8)
-#print("après computePredMatrix:", time.time() - debut)
-#update lorsque l'on ajoute un film ou lorsque l'on supprime un filmm
-#faire un update
-#print("après realMoviesVector:", time.time() - debut)
+    movies_ranking = sorted(movies_ranking, key=lambda t : t[1], reverse=True)
 
-#calculer à chaque début de groupe
-#print(proposition(4, 654654, 100))
-#print("après proposition:", time.time() - debut)
+    np.save(root + path_to_data + 'movies_ranking_group' + str(group_id), movies_ranking)
+    return 0
+
+#c'est très chelou, updateSimMatrix n'a pas l'air de fonctionner pcq j'ai dû faire updateSimMatrix(615) alors que 
+#les notes de 615 étaient déjà dans la simmatrix de base...
+#apparemment ça pose plus de pb??
+

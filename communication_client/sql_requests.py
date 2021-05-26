@@ -6,12 +6,12 @@ import datetime as dt
 import numpy as np
 
 #PATH when on the VM
-#data_file='/home/ubuntu/serveur/swypeek.db'
+#data_file='/home/ubuntu/serveur/swypeek_final.db'
 
 
 
 #Normal PATH
-data_file='../swypeek_updated.db'
+data_file='../swypeek_final.db'
 
 def dict_factory(cursor, row):
     """used to turn lists into dictionaries while using sqlite
@@ -142,14 +142,7 @@ def getMovieSpec(movie_id):
     conn.close()
     return results
 
-"""
-def numberCommonGenres(movie_id1,movie_id2):
-    conn = sqlite3.connect(data_file)
-    cur = conn.cursor()
-    genreList=cur.execute("(SELECT genres FROM movies where movie_id =?;) INTERSECT (SELECT genres FROM movies where movie_id=?;)"), [movie_id1,movie_id2]
-    conn.close()
-    return len(genreList)
-"""
+
 
 
 

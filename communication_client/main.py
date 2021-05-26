@@ -11,6 +11,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 socketio = fsocket.SocketIO(app)
 
+
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #PATH de zako
@@ -98,7 +99,7 @@ def startSmallGroup():
         return '-3'
     else:    
         movie_id = movies_ranking[0][0]
-        np.save(root + path_to_data + 'movies_ranking_group' + group_id, movies_ranking[1:])
+        #np.save(root + path_to_data + 'movies_ranking_group' + group_id, movies_ranking[1:])
         return str(int(movie_id))
 
 
@@ -110,8 +111,6 @@ def getNewMovie():
     
     everyone_swiped = True
     everyone_swiped_right = True
-
-    #algo.refreshClassement(movie_id, swipe_list)
 
     for swipe in swipe_list:
         if(swipe == 0):
@@ -133,8 +132,13 @@ def getNewMovie():
                 #if there's no movie to return, return a special negative value
                 return '-3'
             else:    
-                movie_id = movies_ranking[0][0]
+                swiped_movie_id = movies_ranking[0][0]
                 np.save(root + path_to_data + 'movies_ranking_group' + data.get('group_id'), movies_ranking[1:])
+                #given
+                algo.refreshRanking(swiped_movie_id, swipe_list, data.get('group_id'))
+                movies_ranking = np.load(root + path_to_data + 'movies_ranking_group' + data.get('group_id') + '.npy')
+                movie_id = movies_ranking[0][0]
+                
                 return str(int(movie_id))
     else:
         #some people still haven't swiped
@@ -171,6 +175,7 @@ def on_start(data):
     user_id = int(data.get('user_id'))
     movie_id = int(data.get('movie_id'))
     sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'7'})
+    #algo.updateRatingsMatrix(user_id, movie_id) not convenient bcs one should change the shape of the matrix and initRatingsMatrix() is fast enough
 
 @socketio.on('left')
 def on_start(data):
@@ -178,7 +183,16 @@ def on_start(data):
     user_id = int(data.get('user_id'))
     movie_id = int(data.get('movie_id'))
     sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'3'})
+    #algo.updateRatingsMatrix(user_id, movie_id) not convenient bcs one should change the shape of the matrix and initRatingsMatrix() is fast enough
 
+@socketio.on('profile_ready')
+def update(user_id):
+    user_id=int(user_id)
+    algo.initRatingsMatrix() 
+    algo.realUsersVector()
+    #algo.realMoviesVector()
+    algo.averageVector()
+    algo.updateSimMatrix(user_id)
 
 #EN LOCAL:
 socketio.run(app)
