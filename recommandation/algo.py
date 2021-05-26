@@ -13,11 +13,11 @@ genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres 
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
-root = "/users/Zac/Documents/serveur"
-path_to_data = "/recommandation/data/"
-#PATH du serveur
-#root = "/home/ubuntu/serveur"
+#root = "/users/Zac/Documents/serveur"
 #path_to_data = "/recommandation/data/"
+#PATH du serveur
+root = "/home/ubuntu/serveur"
+path_to_data = "/recommandation/data/"
 
 #only used in proposition to check if a movie_id matches a real movie
 def realMoviesVector():

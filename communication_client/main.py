@@ -15,11 +15,11 @@ socketio = fsocket.SocketIO(app)
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #PATH de zako
-root = "/users/Zac/Documents/serveur"
-path_to_data = "/recommandation/data/"
-#PATH du serveur
-#root = "/home/ubuntu/serveur"
+#root = "/users/Zac/Documents/serveur"
 #path_to_data = "/recommandation/data/"
+#PATH du serveur
+root = "/home/ubuntu/serveur"
+path_to_data = "/recommandation/data/"
 
 
 def dict_factory(cursor, row):

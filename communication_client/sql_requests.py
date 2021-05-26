@@ -6,12 +6,12 @@ import datetime as dt
 import numpy as np
 
 #PATH when on the VM
-#data_file='/home/ubuntu/serveur/swypeek_final.db'
+data_file='/home/ubuntu/serveur/swypeek_final.db'
 
 
 
 #Normal PATH
-data_file='../swypeek_final.db'
+#data_file='../swypeek_final.db'
 
 def dict_factory(cursor, row):
     """used to turn lists into dictionaries while using sqlite

@@ -2,20 +2,20 @@ import sqlite3
 import numpy as np
 
 #PATH when on the VM
-#data_file='/home/ubuntu/serveur/swypeek_final.db'
+data_file='/home/ubuntu/serveur/swypeek_final.db'
 
 #Normal PATH
-data_file='../swypeek_final.db'
+#data_file='../swypeek_final.db'
 
 #PATH doréli1
 #root = "/home/qzaac/tetech1A/PACT/seveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
-root = "/users/Zac/Documents/serveur"
-path_to_data = "/recommandation/data/"
-#PATH du serveur
-#root = "/home/ubuntu/serveur"
+#root = "/users/Zac/Documents/serveur"
 #path_to_data = "/recommandation/data/"
+#PATH du serveur
+root = "/home/ubuntu/serveur"
+path_to_data = "/recommandation/data/"
 
 genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres + (the last one is animation)
 
