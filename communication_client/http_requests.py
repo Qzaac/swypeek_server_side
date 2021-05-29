@@ -87,7 +87,7 @@ def getFirstMovies():
     x = requests.get(url+'/api/v0/first_swipes')
     print(x.text)
 
-getFirstMovies()
+
 
 #query = input()
 """

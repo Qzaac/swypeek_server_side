@@ -139,12 +139,9 @@ def getMovieSpec(movie_id):
     conn.row_factory = dict_factory
     cur = conn.cursor()
     results = cur.execute('SELECT * FROM movies WHERE movie_id = ?', [movie_id]).fetchall()[0]
-    #results.get("short_synopsis")=eval(results.get("short_synopsis"))
-    #print(eval(results.get("short_synopsis")))
     conn.close()
     return results
 
-getMovieSpec(1027)
 
 def getNicknames(group_id):
     L={}
@@ -159,6 +156,12 @@ def getNicknames(group_id):
     conn.close()
     return L
 
+def getGroupId(group_id):
+    conn = sqlite3.connect(data_file)
+    cur = conn.cursor()
+    results = cur.execute('SELECT group_id FROM groups WHERE group_id = ?', [group_id]).fetchall()
+    conn.close()
+    return results
 
 
 

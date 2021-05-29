@@ -155,6 +155,11 @@ def getNicknames():
     group_id = flask.request.args.get('group_id')
     return sql_requests.getNicknames(group_id)
 
+@app.route('/api/v0/resources/checkgroupid',  methods=['GET'])
+def getGroupId():
+    group_id = flask.request.args.get('group_id')
+    return sql_requests.getGroupId(group_id)
+
 
 #quand un utilisateur envoie un socket 'join' avec le group_id dans le message ça le rajoute à la room qui port le numéro du group_id
 @socketio.on('join')
