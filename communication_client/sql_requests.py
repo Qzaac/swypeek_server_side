@@ -139,10 +139,25 @@ def getMovieSpec(movie_id):
     conn.row_factory = dict_factory
     cur = conn.cursor()
     results = cur.execute('SELECT * FROM movies WHERE movie_id = ?', [movie_id]).fetchall()[0]
+    #results.get("short_synopsis")=eval(results.get("short_synopsis"))
+    #print(eval(results.get("short_synopsis")))
     conn.close()
     return results
 
+getMovieSpec(1027)
 
+def getNicknames(group_id):
+    L={}
+    conn = sqlite3.connect(data_file)
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+    results = cur.execute('SELECT COUNT(nickname) FROM users_groups WHERE group_id = ?', [group_id]).fetchone()
+    cpt = results.get('COUNT(nickname)')
+    for i in range(cpt):
+        nickname = cur.execute('SELECT nickname FROM users_groups WHERE group_id = ?', [group_id]).fetchall()[i].get('nickname')
+        L[i]=nickname
+    conn.close()
+    return L
 
 
 

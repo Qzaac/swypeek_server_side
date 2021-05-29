@@ -149,6 +149,12 @@ def getNewMovie():
 def getFirstMovies():
     return str(algo.firstMovies())
 
+@app.route('/api/v0/resources/users_groups',  methods=['GET'])
+def getNicknames():
+    """returns a dictionnary with all nicknames of users of the same room"""
+    group_id = flask.request.args.get('group_id')
+    return sql_requests.getNicknames(group_id)
+
 
 #quand un utilisateur envoie un socket 'join' avec le group_id dans le message ça le rajoute à la room qui port le numéro du group_id
 @socketio.on('join')
@@ -193,6 +199,17 @@ def update(user_id):
     #algo.realMoviesVector()
     algo.averageVector()
     algo.updateSimMatrix(user_id)
+
+
+@socketio.on('match')
+def matching(group_id):
+    print("IT'S A MATCH !!!")
+    fsocket.emit('matching',room=group_id)
+
+@socketio.on('new_user')
+def updateUsernames(group_id):
+    print("NEW USER")
+    fsocket.emit('refresh',room=group_id)
 
 #EN LOCAL:
 socketio.run(app)
