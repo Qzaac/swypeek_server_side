@@ -10,7 +10,7 @@ max_id_movies = data.maxIdMovies()
 genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres + (the last one is animation)
 
 #PATH doréli1
-#root = "/home/qzaac/tetech1A/PACT/seveur"
+#root = "/home/qzaac/tetech1A/PACT/code serveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
 #root = "/users/Zac/Documents/serveur"

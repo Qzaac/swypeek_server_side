@@ -158,10 +158,11 @@ def getNicknames(group_id):
 
 def getGroupId(group_id):
     conn = sqlite3.connect(data_file)
+    conn.row_factory = dict_factory
     cur = conn.cursor()
     results = cur.execute('SELECT group_id FROM groups WHERE group_id = ?', [group_id]).fetchall()
     conn.close()
-    return results
+    return flask.jsonify(results)
 
 
 

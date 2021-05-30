@@ -13,7 +13,7 @@ socketio = fsocket.SocketIO(app)
 
 
 #PATH doréli1
-#root = "/home/qzaac/tetech1A/PACT/seveur"
+#root = "/home/qzaac/tetech1A/PACT/code serveur"
 #PATH de zako
 #root = "/users/Zac/Documents/serveur"
 #path_to_data = "/recommandation/data/"
@@ -36,13 +36,16 @@ def dict_factory(cursor, row):
 def home():
     return "<h1>API Swypeek</h1><p>This site is a prototype API for a college project.</p>"
 
+
 @app.route('/api/v0/resources/users', methods=['GET'])
 def existing_user():
     return sql_requests.existing_user()
 
+
 @app.route('/api/v0/resources/users/connection', methods=['PUT'])
 def check_credentials():
     return sql_requests.check_credentials()
+
 
 @app.route('/api/v0/resources/users', methods=['POST'])
 def add_row_users():
@@ -71,10 +74,12 @@ def add_row_users_groups():
     str(sql_requests.add_row('users_groups', data))
     return ""
 
+
 @app.route('/api/v0/resources/groups/connection', methods=['PUT'])
 def check_group_credentials():
     """returns group_id on success"""
     return sql_requests.check_group_credentials()
+
 
 @app.route('/api/v0/resources/movie',  methods=['GET'])
 def getMovieSpec():
@@ -82,6 +87,18 @@ def getMovieSpec():
     movie_id = flask.request.args.get('movie_id')
     return sql_requests.getMovieSpec(movie_id)
 
+
+@app.route('/api/v0/resources/users_groups',  methods=['GET'])
+def getNicknames():
+    """returns a dictionnary with all nicknames of users of the same room"""
+    group_id = flask.request.args.get('group_id')
+    return sql_requests.getNicknames(group_id)
+
+
+@app.route('/api/v0/resources/checkgroupid',  methods=['GET'])
+def getGroupId():
+    group_id = flask.request.args.get('group_id')
+    return sql_requests.getGroupId(group_id)
 
 
 @app.route('/api/v0/resources/users/<user_id>', methods=['DELETE'])
@@ -123,6 +140,7 @@ def getNewMovie():
         if(everyone_swiped_right):
             #essentially means a movie was found so the group can be deleted
             sql_requests.delete_rows('groups', 'group_id', data.get('group_id'))
+            sql_requests.delete_rows('users_groups', 'group_id', data.get('group_id'))
             return '-2'
         else:
             #we need to find another movie and to reset has swiped!
@@ -149,16 +167,6 @@ def getNewMovie():
 def getFirstMovies():
     return str(algo.firstMovies())
 
-@app.route('/api/v0/resources/users_groups',  methods=['GET'])
-def getNicknames():
-    """returns a dictionnary with all nicknames of users of the same room"""
-    group_id = flask.request.args.get('group_id')
-    return sql_requests.getNicknames(group_id)
-
-@app.route('/api/v0/resources/checkgroupid',  methods=['GET'])
-def getGroupId():
-    group_id = flask.request.args.get('group_id')
-    return sql_requests.getGroupId(group_id)
 
 
 #quand un utilisateur envoie un socket 'join' avec le group_id dans le message ça le rajoute à la room qui port le numéro du group_id
@@ -169,7 +177,6 @@ def on_join(group_id):
 @socketio.on('autre message')
 def on_autre_message():
     fsocket.emit('')
-
 
 #quand un utilisateur démarre le début des prédictions on envoie le film à tous les autres
 #ou bien lorsqu'un utilisateur swipe et est le dernier a swipé et un film est proposé
@@ -204,7 +211,6 @@ def update(user_id):
     #algo.realMoviesVector()
     algo.averageVector()
     algo.updateSimMatrix(user_id)
-
 
 @socketio.on('match')
 def matching(group_id):

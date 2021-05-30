@@ -8,7 +8,7 @@ data_file='/home/ubuntu/serveur/swypeek_final.db'
 #data_file='../swypeek_final.db'
 
 #PATH doréli1
-#root = "/home/qzaac/tetech1A/PACT/seveur"
+#root = "/home/qzaac/tetech1A/PACT/code serveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
 #root = "/users/Zac/Documents/serveur"
