@@ -11,8 +11,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 socketio = fsocket.SocketIO(app)
 
-
-#PATH doréli1
+#PATH d'auré
 #root = "/home/qzaac/tetech1A/PACT/code serveur"
 #PATH de zako
 #root = "/users/Zac/Documents/serveur"
@@ -168,15 +167,16 @@ def getFirstMovies():
     return str(algo.firstMovies())
 
 
-
 #quand un utilisateur envoie un socket 'join' avec le group_id dans le message ça le rajoute à la room qui port le numéro du group_id
 @socketio.on('join')
 def on_join(group_id):
     fsocket.join_room(group_id)
 
+
 @socketio.on('autre message')
 def on_autre_message():
     fsocket.emit('')
+
 
 #quand un utilisateur démarre le début des prédictions on envoie le film à tous les autres
 #ou bien lorsqu'un utilisateur swipe et est le dernier a swipé et un film est proposé
@@ -187,6 +187,7 @@ def on_start(data):
     movie_id = int(data.get('movie_id'))
     fsocket.emit('movie_id', movie_id, room=group_id)
 
+
 @socketio.on('right')
 def on_start(data):
     data=eval(data)
@@ -195,6 +196,7 @@ def on_start(data):
     sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'7'})
     #algo.updateRatingsMatrix(user_id, movie_id) not convenient bcs one should change the shape of the matrix and initRatingsMatrix() is fast enough
 
+
 @socketio.on('left')
 def on_start(data):
     data=eval(data)
@@ -202,6 +204,7 @@ def on_start(data):
     movie_id = int(data.get('movie_id'))
     sql_requests.add_row('users_movies', {'user_id':user_id, 'movie_id':movie_id, 'rating':'3'})
     #algo.updateRatingsMatrix(user_id, movie_id) not convenient bcs one should change the shape of the matrix and initRatingsMatrix() is fast enough
+
 
 @socketio.on('profile_ready')
 def update(user_id):
@@ -212,19 +215,21 @@ def update(user_id):
     algo.averageVector()
     algo.updateSimMatrix(user_id)
 
+
 @socketio.on('match')
 def matching(group_id):
-    print("IT'S A MATCH !!!")
     fsocket.emit('matching',room=group_id)
+
 
 @socketio.on('new_user')
 def updateUsernames(group_id):
     print("NEW USER")
     fsocket.emit('refresh',room=group_id)
 
+
 #EN LOCAL:
-socketio.run(app)
+#socketio.run(app)
 
 #SUR LA VM:
-#socketio.run(app, host='0.0.0.0', port=80)
+socketio.run(app, host='0.0.0.0', port=80)
 

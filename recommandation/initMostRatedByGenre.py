@@ -1,3 +1,0 @@
-import sql_requests_reco
-
-sql_requests_reco.mostRatedByGenres()

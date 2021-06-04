@@ -8,8 +8,6 @@ import numpy as np
 #PATH when on the VM
 data_file='/home/ubuntu/serveur/swypeek_final.db'
 
-
-
 #Normal PATH
 #data_file='../swypeek_final.db'
 
@@ -35,6 +33,7 @@ def add_row(table, data):
 
     cur.execute(
         "INSERT INTO " + table + " (" + ', '.join(data.keys()) + ") VALUES " + question_marks + ";", list(data.values()))
+    
     conn.commit()
     conn.close()
     return cur.lastrowid
@@ -112,12 +111,14 @@ def update_has_swiped(group_id, user_id, swipe_direction):
     conn.close()
     return [i[0] for i in results]
 
+
 def reset_has_swiped(group_id):
     conn = sqlite3.connect(data_file)
     cur = conn.cursor()
     cur.execute('UPDATE users_groups SET has_swiped = 0 WHERE group_id = ?', [group_id])
     conn.commit()
     conn.close()
+
 
 def delete_rows(table, id_name, id_value):
     conn = sqlite3.connect(data_file)
@@ -133,6 +134,7 @@ def delete_rows(table, id_name, id_value):
         return str(err)
     conn.close()
     return id_name + ' = ' + id_value + ' from ' + table + ' was successfully deleted.'
+
 
 def getMovieSpec(movie_id):
     conn = sqlite3.connect(data_file)
@@ -156,6 +158,7 @@ def getNicknames(group_id):
     conn.close()
     return L
 
+
 def getGroupId(group_id):
     conn = sqlite3.connect(data_file)
     conn.row_factory = dict_factory
@@ -163,8 +166,3 @@ def getGroupId(group_id):
     results = cur.execute('SELECT group_id FROM groups WHERE group_id = ?', [group_id]).fetchall()
     conn.close()
     return flask.jsonify(results)
-
-
-
-
-

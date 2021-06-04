@@ -9,7 +9,7 @@ max_id_users = data.maxIdUsers()
 max_id_movies = data.maxIdMovies()
 genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres + (the last one is animation)
 
-#PATH doréli1
+#PATH d'auré
 #root = "/home/qzaac/tetech1A/PACT/code serveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
@@ -18,6 +18,7 @@ genre_ids = [3, 1, 4, 7, 2, 8, 6, 11, 13, 18] #ids of the 9 more popular genres 
 #PATH du serveur
 root = "/home/ubuntu/serveur"
 path_to_data = "/recommandation/data/"
+
 
 #only used in proposition to check if a movie_id matches a real movie
 def realMoviesVector():
@@ -29,6 +30,7 @@ def realMoviesVector():
     np.save(root + path_to_data + 'real_movies', vector)
     return 0
 
+
 #never used but same idea as realMoviesVector
 def realUsersVector():
     max_id_users = data.maxIdUsers()
@@ -38,6 +40,7 @@ def realUsersVector():
         vector[user] = 1
     np.save(root + path_to_data + 'real_users', vector)
     return 0
+
 
 def initRatingsMatrix():
     max_id_movies = data.maxIdMovies()
@@ -52,20 +55,19 @@ def initRatingsMatrix():
     np.save(root + path_to_data + 'ratings_matrix', matrix)
     return 0
 
-def scrub_words(text): 
 
+def scrub_words(text): 
     # remove html markup
     text=re.sub("(<.*?>)","",text)
-
     #remove non-ascii and digits
     text=re.sub("(\\W|\\d)"," ",text)
-
     #remove whitespace
     text=text.strip()
     return text
 
+
 def shortlist(words):
-    """delete useless words"""
+    """deletes useless words"""
     stopWords = set(corpus.stopwords.words('english'))
     shortlisted_words=[]
     for w in words:
@@ -75,6 +77,7 @@ def shortlist(words):
             shortlisted_words.remove(w)
     return shortlisted_words    
 
+
 def initSimMoviesMatrix():
     max_id_movies = data.maxIdMovies()
     """saves in data a matrix of shape (max_id_movies + 1, max_id_movies + 1) of
@@ -82,9 +85,7 @@ def initSimMoviesMatrix():
 
     """also saves the list of percentiles"""
     synopses_filled = ["rine"]*(max_id_movies+1)
-
     updatedsynopsis=[]
-    
     synopses=data.allSynopses()
     
     for (movie_id, synopsis) in synopses :
@@ -92,27 +93,18 @@ def initSimMoviesMatrix():
 
     lemmatizer = WordNetLemmatizer()
     
-
     #simplify each synopsis and append it to a list (of list)
     for s in synopses_filled :
-
         words = word_tokenize(s)
-
         #lowercase for everyone
         lower_words=[word.lower() for word in words]
-
         #Noise cancelling
         cleaned_words=[scrub_words(w) for w in lower_words]
-
         #Lemmatization
         lemmatized_words=[lemmatizer.lemmatize(word=word,pos='v') for word in cleaned_words]
-
         #get rid of useless words
         shortlisted_words=shortlist(lemmatized_words)
-
         updatedsynopsis.append(shortlisted_words)
-    
-    #Creating TFIDF vector
 
     #list of simplified synopses
     corpus = []
@@ -125,6 +117,7 @@ def initSimMoviesMatrix():
     
     for i in range(max_id_movies+1):
         for j in range(i+1, max_id_movies+1):
+            #if the i and j are much to similare they aren't real movies (false movies' synopses have been filled with the same string)
             if pairwise_similarity[i][j] >= 1:
                 pairwise_similarity[i][j]=np.nan
                 pairwise_similarity[j][i]=np.nan
@@ -136,11 +129,12 @@ def initSimMoviesMatrix():
 
     np.save(root + path_to_data + 'percentiles', np.array(percentiles))
     np.save(root + path_to_data + 'movies_sim_matrix', pairwise_similarity)
-
     return 0
 
 
 def initPercentilesMatrix():
+    """saves a np array of shape (max_id_movies+1, max_id_movies+1) such that
+    percentiles_matrix[i][j] returns in which percentile the similarity between i and j is (among all real movies)"""
     max_id_movies = data.maxIdMovies()
     movies_sim_matrix = np.load(root + path_to_data + 'movies_sim_matrix.npy')
     matrix = np.full((max_id_movies+1, max_id_movies+1), np.nan, dtype=float)
@@ -187,6 +181,7 @@ def averageVector():
 
     return 0
 
+
 def updateAverageVector(user):
     vector = np.load(root + path_to_data + 'average_vector.npy')
     ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
@@ -209,7 +204,6 @@ def sim(user1, user2, ratings_matrix, average_vector):
     sum2 = np.sum(boolean_vector*(ratings_matrix[user1] - average_vector[user1])**2)
     sum3 = np.sum(boolean_vector*(ratings_matrix[user2] - average_vector[user2])**2)
 
-
     if(movies_in_common==0 or sum2 == 0 or sum3 == 0):
         return 2
     
@@ -231,6 +225,7 @@ def initSimMatrix():
     np.save(root + path_to_data + 'sim_matrix', sim_matrix)
     return 0
 
+
 def updateSimMatrix(user):
     max_id_users = data.maxIdUsers()
     ratings_matrix = np.load(root + path_to_data + 'ratings_matrix.npy')
@@ -248,6 +243,7 @@ def updateSimMatrix(user):
     
     np.save(root + path_to_data + 'sim_matrix', sim_matrix)
     return 0
+
 
 #so many parameters because don't want to load many times
 def pred(user, movie, threshold, sim_matrix, ratings_matrix, average_vector):
@@ -279,7 +275,6 @@ def computePredMatrix(group_id, threshold, ratings_matrix, average_vector):
                 pred_matrix[user][movie] = pred(user, movie, threshold, sim_matrix, ratings_matrix, average_vector)
 
     return pred_matrix
-
 
 
 def proposition(group_id, threshold = 0.8, limit=100):
@@ -348,6 +343,7 @@ def firstMovies():
 
     return first_movies
 
+
 def refreshRanking(swiped_movie_id, swipe_list, group_id):
     movies_ranking = np.load(root + path_to_data + 'movies_ranking_group' + str(group_id) + '.npy')
     percentiles_matrix = np.load(root + path_to_data + 'percentiles_matrix.npy')
@@ -364,8 +360,3 @@ def refreshRanking(swiped_movie_id, swipe_list, group_id):
 
     np.save(root + path_to_data + 'movies_ranking_group' + str(group_id), movies_ranking)
     return 0
-
-#c'est très chelou, updateSimMatrix n'a pas l'air de fonctionner pcq j'ai dû faire updateSimMatrix(615) alors que 
-#les notes de 615 étaient déjà dans la simmatrix de base...
-#apparemment ça pose plus de pb??
-

@@ -7,7 +7,7 @@ data_file='/home/ubuntu/serveur/swypeek_final.db'
 #Normal PATH
 #data_file='../swypeek_final.db'
 
-#PATH doréli1
+#PATH d'auré
 #root = "/home/qzaac/tetech1A/PACT/code serveur"
 #path_to_data = "/recommandation/data/"
 #PATH de zako
@@ -26,6 +26,7 @@ def importRatings():
     ratings = cur.execute("SELECT * FROM users_movies;").fetchall()
     conn.close()
     return ratings
+
 
 def importRating(user, movie):
     conn = sqlite3.connect(data_file)
@@ -73,6 +74,7 @@ def allUserIds():
     userList=[s[0] for s in raw_users]
     return userList
 
+
 def allMovieIds():
     """
     Returns a list with every movie ID
@@ -83,6 +85,7 @@ def allMovieIds():
     conn.close()
     movieList=[s[0] for s in raw_movies]
     return movieList 
+
 
 def mostRatedByGenres():
     """Returns a list of list containing movie_id of the 25 most rated movies by genres:
@@ -106,6 +109,7 @@ def mostRatedByGenres():
     np.save(root + path_to_data + 'most_rated_by_genres', most_rated_by_genres)
     conn.close()
     
+
 def allSynopses():
     conn = sqlite3.connect(data_file)
     cur = conn.cursor()
@@ -134,6 +138,7 @@ def numberCommonGenres(movie_id1,movie_id2):
     """, [movie_id1, movie_id2]).fetchall() 
     conn.close()
     return number[0][0]
+    
 
 def minNumberGenres(movie_id1, movie_id2):
     conn = sqlite3.connect(data_file)
